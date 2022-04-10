@@ -1,0 +1,5 @@
+#Inteillij ignored files.
+.idea/
+*.iws
+*.iml
+*.ipr
