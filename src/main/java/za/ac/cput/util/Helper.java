@@ -1,8 +1,3 @@
-/* Helper.java
-   ID generator for entities
-   Author: Duncan Harris
-   Date: 07 April 2022 
-*/
 package za.ac.cput.util;
 
 import java.util.UUID;
