@@ -21,3 +21,4 @@ public class MedicalRecordsFactoryTest {
         System.out.println(medicalRecords);
     }
 }
+
