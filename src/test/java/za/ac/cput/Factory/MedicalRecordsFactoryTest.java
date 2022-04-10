@@ -9,10 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import za.ac.cput.Entity.MedicalRecords;
 
-/**
- *
- * @author judy
- */
+
 public class MedicalRecordsFactoryTest {
    
     @Test

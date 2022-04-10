@@ -12,10 +12,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import za.ac.cput.Entity.MedicalRecords;
 import za.ac.cput.Factory.MedicalRecordsFactory;
 
-/**
- *
- * @author judy
- */
+
 @TestMethodOrder(MethodOrderer.Alphanumeric.class) //jUnit5 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class MedicalRecordsRepositoryTest 
 {
