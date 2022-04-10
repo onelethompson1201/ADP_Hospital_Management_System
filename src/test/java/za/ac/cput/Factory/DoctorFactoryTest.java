@@ -15,7 +15,6 @@ class DoctorFactoryTest {
 
     @Test
     void createDoctor() {
-
         Doctor doctor = DoctorFactory.createDoctor("Chante Davids", "KitKat_42","Nursing Department","Midwife Nurse");
         assertNotNull(doctor);
         System.out.println(doctor);
