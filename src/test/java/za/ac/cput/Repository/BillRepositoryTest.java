@@ -1,3 +1,8 @@
+/* BillRepositoryTest.java
+   Test class for Bill Repository
+   Author: Davin Shaun Carstens
+   Date: 08 April 2022
+*/
 package za.ac.cput.Repository;
 
 import org.junit.jupiter.api.MethodOrderer;
@@ -5,22 +10,22 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import za.ac.cput.Entity.Bill;
 import za.ac.cput.Factory.BillFactory;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.Alphanumeric.class)
-public class BillRepositoryTest
+class BillRepositoryTest
 {
 
     private static BillRepository repository = BillRepository.getRepository();
-    private static Bill bill = BillFactory.createBill("1232", "1223"
-            , "davin", 34f);
+    private static Bill bill = BillFactory.createBill("12312", "FSF", 1213f);
 
     @Test
     void a_create()
     {
         Bill created = repository.create(bill);
-        assertEquals(bill.getBillNo(),created.getBillNo());
-        System.out.println("Create: "+ created);
+        assertEquals(bill.getBillNo(), created.getBillNo());
+        System.out.println("Create: " +created);
     }
 
     @Test
@@ -35,10 +40,10 @@ public class BillRepositoryTest
     void c_update()
     {
         Bill updated = new Bill.Builder().copy(bill)
-                .setBillNo("324")
-                .setPatientName("Rolls")
-                .setPatientID("D456")
-                .setBillAmount(6666f)
+                .setBillAmount(1123f)
+                .setPatientID("1244654hkk")
+                .setPatientName("Davin")
+                .setBillNo("45")
                 .build();
         assertNotNull(repository.update(updated));
         System.out.println("Updated: "+updated);
@@ -49,7 +54,7 @@ public class BillRepositoryTest
     {
         boolean success = repository.delete(bill.getBillNo());
         assertTrue(success);
-        System.out.println("Deleted" + true);
+        System.out.println("Deleted: "+success);
     }
 
     @Test
