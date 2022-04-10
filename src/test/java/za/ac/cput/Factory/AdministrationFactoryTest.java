@@ -9,10 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import za.ac.cput.Entity.Administration;
 
-/**
- *
- * @author judy
- */
+
 public class AdministrationFactoryTest 
 {
     @Test
