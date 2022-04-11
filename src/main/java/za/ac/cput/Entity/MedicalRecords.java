@@ -1,5 +1,5 @@
 /* MedicalRecords.java
-   Entity for the medicalRecords
+   Entity for the medicalRecords(220110530)
    Author: Duncan Benjamin Harris
    Date: 08 April 2022 
 */
