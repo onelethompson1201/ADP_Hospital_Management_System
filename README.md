@@ -1,9 +1,5 @@
-# Hospital Management System
+# ADP_Hospital_Management_System
 
--------
+ADP3 Group Assignment project
 
-## This uml is part of the hospital management system
-
------
-
-![](uml/Hospital%20management%20system%20UML%20Diagram.JPG)
+![Hospital management system UML Diagram](https://user-images.githubusercontent.com/61689105/162628734-20a6af9f-1d93-47bd-b762-6eee6e80af1c.JPG)

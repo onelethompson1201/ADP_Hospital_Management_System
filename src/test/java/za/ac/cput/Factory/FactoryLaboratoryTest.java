@@ -8,7 +8,7 @@ import za.ac.cput.util.Helper;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * @author Chuma Nxazonke
+ * @author Chuma Edward Nxazonke
  * Student number: 219181187
  * Date: 09 April 2022
  *

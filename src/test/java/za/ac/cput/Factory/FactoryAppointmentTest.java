@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 //I will test it using the data
 
 /**
- * @author Chuma Nxazonke
+ * @author Chuma Edward Nxazonke
  * Student number: 219181187
  * Date: 09 April 2022
  *

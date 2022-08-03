@@ -10,7 +10,7 @@ import za.ac.cput.Entity.Laboratory;
 import za.ac.cput.util.Helper;
 /**
  *
- * @author Chuma Nxazonke
+ * @author Chuma Edward Nxazonke
  * Student number: 219181187
  * Date: 07 April 2022
  */

@@ -2,12 +2,10 @@ package za.ac.cput.Repository;
 
 import java.util.*;
 
-import za.ac.cput.Entity.Administration;
-import za.ac.cput.Entity.Appointment;
 import za.ac.cput.Entity.Laboratory;
 
 /***
- * @author: Chuma Nxazonke
+ * @author: Chuma Edward Nxazonke
  * Student number: 219181187
  * Date: 08 April 2022
  */

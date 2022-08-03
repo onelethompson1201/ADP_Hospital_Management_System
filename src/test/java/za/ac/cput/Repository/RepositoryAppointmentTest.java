@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author Chuma Nxazonke
+ * @author Chuma Edward Nxazonke
  * Student number: 219181187
  * Date: 09 April 2022
  */

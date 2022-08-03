@@ -5,7 +5,7 @@ import za.ac.cput.Entity.Appointment;
 import java.util.Set;
 
 /**
- * @author Chuma Nxazonke
+ * @author Chuma Edward Nxazonke
  * Student Number: 219181187
  * Date: 08 April 2022
  *

@@ -2,6 +2,9 @@ package za.ac.cput.util;
 
 import java.util.UUID;
 
+/**
+ * This is a helper class
+ */
 public class Helper 
 {
     public static boolean isNullorEmpty(String x) {
