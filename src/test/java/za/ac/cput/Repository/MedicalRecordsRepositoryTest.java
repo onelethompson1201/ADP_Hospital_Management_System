@@ -33,7 +33,7 @@ public class MedicalRecordsRepositoryTest
    {
        MedicalRecords read = repository.read(medicalRecords.getRecordID());
        assertNotNull(read);
-       System.out.println("Read: "+read);
+       System.out.println("Read: "+read.toString());
    }
    
    @Test 

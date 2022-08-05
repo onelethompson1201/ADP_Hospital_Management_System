@@ -2,8 +2,28 @@ package za.ac.cput.util;
 
 import java.util.UUID;
 
+/**
+ * This is a helper class
+ */
 public class Helper 
 {
+    public static boolean isNullorEmpty(String x) {
+        return ( x == null || x.equals("") || x.equalsIgnoreCase("null"));
+    }
+
+    //Generating primary key for Appointment class
+    public static String generateAppointmentID()
+    {
+        return UUID.randomUUID().toString();
+    }
+
+    //Generating primary key for labroratory class
+    public static String generateLaboratoryID()
+    {
+        return UUID.randomUUID().toString();
+    }
+
+
     //Generating primary key for patient class
     public static String generatePatientID()
     {
