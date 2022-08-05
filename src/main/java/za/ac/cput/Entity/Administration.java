@@ -1,5 +1,5 @@
 /* Administration.java
-   Entity for the administration
+   Entity for the administration(220110530)
    Author: Duncan Benjamin Harris
    Date: 08 April 2022 
 */
