@@ -1,23 +1,41 @@
 /*  Doctor.java
     Entity for the Doctor
     Author: Chante Lee Davids [220246688]
-    Date  : 6 April 2022
+    Date  : 6 August 2022
 */
 
 package za.ac.cput.Entity;
 
-public class Doctor {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import java.io.Serializable;
+import java.util.Objects;
+
+@Entity
+public class Doctor implements Serializable {
+
+    @Id
     private String doctorID;
+
     private String doctorName;
     private String doctorPassword;
-    private String departmentName;
+
+    @OneToOne
+    @JoinColumn(name = "department_id", referencedColumnName = "department_id")
+    private Department department;
+
     private String specialty;
+
+    protected Doctor() {
+    }
 
     private Doctor(Builder builder){
         this.doctorID = builder.doctorID;
         this.doctorName = builder.doctorName;
         this.doctorPassword = builder.doctorPassword;
-        this.departmentName = builder.departmentName;
+        this.department = builder.department;
         this.specialty = builder.specialty;
     }
 
@@ -25,40 +43,33 @@ public class Doctor {
         return doctorID;
     }
 
-    public void setDoctorID(String doctorID) {
-        this.doctorID = doctorID;
-    }
-
     public String getDoctorName() {
         return doctorName;
-    }
-
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
     }
 
     public String getDoctorPassword() {
         return doctorPassword;
     }
 
-    public void setDoctorPassword(String doctorPassword) {
-        this.doctorPassword = doctorPassword;
-    }
-
-    public String getDepartmentName() {
-        return departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+    public Department getDepartment() {
+        return department;
     }
 
     public String getSpecialty() {
         return specialty;
     }
 
-    public void setSpecialty(String specialty) {
-        this.specialty = specialty;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Doctor doctor = (Doctor) o;
+        return Objects.equals(doctorID, doctor.doctorID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(doctorID);
     }
 
     @Override
@@ -67,7 +78,7 @@ public class Doctor {
                 "doctorID='" + doctorID + '\'' +
                 ", doctorName='" + doctorName + '\'' +
                 ", doctorPassword='" + doctorPassword + '\'' +
-                ", departmentName='" + departmentName + '\'' +
+                ", department='" + department + '\'' +
                 ", specialty='" + specialty + '\'' +
                 '}';
     }
@@ -76,7 +87,7 @@ public class Doctor {
         private String doctorID;
         private String doctorName;
         private String doctorPassword;
-        private String departmentName;
+        private Department department;
         private String specialty;
 
         public Builder setDoctorID(String doctorID) {
@@ -94,8 +105,8 @@ public class Doctor {
             return this;
         }
 
-        public Builder setDepartmentName(String departmentName) {
-            this.departmentName = departmentName;
+        public Builder setDepartment(Department department) {
+            this.department = department;
             return this;
         }
 
@@ -108,7 +119,7 @@ public class Doctor {
             this.doctorID = doctor.doctorID;
             this.doctorName = doctor.doctorName;
             this.doctorPassword = doctor.doctorPassword;
-            this.departmentName = doctor.departmentName;
+            this.department = doctor.department;
             this.specialty = doctor.specialty;
             return this;
         }
