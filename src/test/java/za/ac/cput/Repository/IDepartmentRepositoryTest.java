@@ -5,7 +5,6 @@
 */
 
 package za.ac.cput.Repository;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import za.ac.cput.Entity.Department;
