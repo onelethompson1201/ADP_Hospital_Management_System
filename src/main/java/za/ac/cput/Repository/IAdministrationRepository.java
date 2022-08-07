@@ -6,9 +6,11 @@
 package za.ac.cput.Repository;
 
 import java.util.Set;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import za.ac.cput.Entity.Administration;
 
-public interface IAdministrationRepository extends IRepository <Administration, String> 
+public interface IAdministrationRepository extends JpaRepository<Administration, String>
 {
-    public Set<Administration> getAll();
+
 }

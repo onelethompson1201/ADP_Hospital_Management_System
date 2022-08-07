@@ -5,11 +5,22 @@
 */
 package za.ac.cput.Entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
+
+@Entity
 public class Administration 
 {
+    @Id
     private String adminID;
+    @NotNull
     private String adminName;
+    @NotNull
     private String adminPassword;
+
+    protected Administration(){}
 
     private Administration(Builder builder)
     {
@@ -28,18 +39,6 @@ public class Administration
 
     public String getAdminPassword() {
         return adminPassword;
-    }
-
-    public void setAdminID(String adminID) {
-        this.adminID = adminID;
-    }
-
-    public void setAdminName(String adminName) {
-        this.adminName = adminName;
-    }
-
-    public void setAdminPassword(String adminPassword) {
-        this.adminPassword = adminPassword;
     }
 
     @Override
@@ -82,4 +81,22 @@ public class Administration
             return new Administration(this);
         }
     }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(this == obj)
+            return true;
+        if(obj == null || getClass() != obj.getClass())
+            return false;
+        Administration administration = (Administration) obj;
+        return adminID.equals(administration.adminID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(adminID);
+    }
 }
+
+
