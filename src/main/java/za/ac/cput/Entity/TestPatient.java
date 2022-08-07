@@ -1,45 +1,45 @@
 package za.ac.cput.Entity;
+
+import javax.persistence.*;
+
 /**
  TestPatient.Java
  AUTHOR: Nolubabalo Ndongeni
  Student number: 219319464
  Date: 10 April 2022
+ Date: 07 August 2022
  **/
+
+@Entity
 public class TestPatient {
+
+    @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private String testID;
     private String testName;
+    @EmbeddedId
     private String patientID;
 
-    private TestPatient(){
-
-    }
     private TestPatient (Builder builder) {
         this.testID = builder.testID;
         this.testName = builder.testName;
         this.patientID = builder.patientID;
     }
-    public String getTestID() {
-        return testID;
+
+    public TestPatient() {
+
     }
 
-    public void setTestID(String testID) {
-        this.testID = testID;
+    public String getTestID() {
+        return testID;
     }
 
     public String getTestName() {
         return testName;
     }
 
-    public void setTestName(String testName) {
-        this.testName = testName;
-    }
-
     public String getPatientID() {
         return patientID;
-    }
-
-    public void setPatientID(String patientID) {
-        this.patientID = patientID;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package za.ac.cput.Repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import za.ac.cput.Entity.TestPatient;
 
 import java.util.Set;
@@ -8,8 +10,10 @@ import java.util.Set;
  AUTHOR: Nolubabalo Ndongeni
  Student number: 219319464
  Date: 10 April 2022
+ Date: 07 August 2022
  **/
 
-public interface ITestPatientRepository extends IRepository<TestPatient, String> {
-    public Set<TestPatient> getAll();
+@Repository
+public interface ITestPatientRepository extends JpaRepository<TestPatient, String> {
+    //public Set<TestPatient> getAll();
 }
