@@ -1,3 +1,9 @@
+/*  DoctorRepositoryTest.java
+    Test for IDoctorRepository
+    Author: Chante Lee Davids [220246688]
+    Date  : 8 August 2022
+*/
+
 package za.ac.cput.Repository;
 
 import org.junit.jupiter.api.BeforeEach;
