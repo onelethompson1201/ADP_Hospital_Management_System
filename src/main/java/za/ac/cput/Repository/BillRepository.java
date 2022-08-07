@@ -1,8 +1,3 @@
-/* BillRepository.java
-   Repository for Bill Entity
-   Author: Davin Shaun Carstens
-   Date: 08 April 2022
-*/
 package za.ac.cput.Repository;
 
 import za.ac.cput.Entity.Bill;
@@ -62,9 +57,7 @@ public class BillRepository implements IBillRepository
     {
         Bill deleteBill = read(billNo);
         if(deleteBill == null)
-        {
             return false;
-        }
         billDB.remove(deleteBill);
         return true;
     }

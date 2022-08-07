@@ -1,8 +1,3 @@
-/* ReceptionFactoryTest.java
-   Test class for ReceptionistFactory
-   Author: Davin Shaun Carstens
-   Date: 08 April 2022
-*/
 package za.ac.cput.Factory;
 
 import org.junit.jupiter.api.Test;
@@ -15,7 +10,7 @@ class ReceptionistFactoryTest
     @Test
     void createReceptionist()
     {
-        Receptionist receptionist = ReceptionistFactory.createReceptionist("213", "davin", 23345);
+        Receptionist receptionist = ReceptionistFactory.createReceptionist("Davin", "Valory", "password", 1232242);
         assertNotNull(receptionist);
         System.out.println(receptionist);
     }

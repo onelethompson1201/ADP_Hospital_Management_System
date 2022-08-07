@@ -1,5 +1,5 @@
 /* AdministrationFactoryTest.java
-   Factory Test for the administration
+   Factory Test for the administration(220110530)
    Author: Duncan Benjamin Harris
    Date: 08 April 2022 
 */
@@ -9,10 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import za.ac.cput.Entity.Administration;
 
-/**
- *
- * @author judy
- */
+
 public class AdministrationFactoryTest 
 {
     @Test

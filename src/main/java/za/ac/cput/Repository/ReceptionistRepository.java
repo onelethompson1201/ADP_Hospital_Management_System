@@ -1,8 +1,3 @@
-/* ReceptionistRepository.java
-   Repository for Receptionist Entity
-   Author: Davin Shaun Carstens
-   Date: 08 April 2022
-*/
 package za.ac.cput.Repository;
 
 import za.ac.cput.Entity.Receptionist;
@@ -28,14 +23,12 @@ public class ReceptionistRepository implements IReceptionistRepository
         }
         return repository;
     }
-
+    @Override
     public Receptionist create(Receptionist receptionist)
     {
         boolean success = receptionistDB.add(receptionist);
         if(!success)
-        {
             return null;
-        }
         return receptionist;
     }
     public Receptionist read(String receptionistID)
@@ -59,15 +52,16 @@ public class ReceptionistRepository implements IReceptionistRepository
         return null;
     }
 
-    public boolean delete(String receptionistID) {
+    @Override
+    public boolean delete(String receptionistID)
+    {
         Receptionist deleteReceptionist = read(receptionistID);
-        if (deleteReceptionist == null)
-        {
+        if(deleteReceptionist == null)
             return false;
-        }
         receptionistDB.remove(deleteReceptionist);
         return true;
     }
+    @Override
     public Set<Receptionist> getAll()
     {
         return receptionistDB;

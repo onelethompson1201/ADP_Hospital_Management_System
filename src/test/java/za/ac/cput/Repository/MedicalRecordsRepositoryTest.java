@@ -1,5 +1,5 @@
 /* MediclRecordsRepositoryTest.java
-   Repository Test for the MedicalRecords
+   Repository Test for the MedicalRecords(220110530)
    Author: Duncan Benjamin Harris
    Date: 08 April 2022 
 */
@@ -12,10 +12,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import za.ac.cput.Entity.MedicalRecords;
 import za.ac.cput.Factory.MedicalRecordsFactory;
 
-/**
- *
- * @author judy
- */
+
 @TestMethodOrder(MethodOrderer.Alphanumeric.class) //jUnit5 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class MedicalRecordsRepositoryTest 
 {
@@ -36,7 +33,7 @@ public class MedicalRecordsRepositoryTest
    {
        MedicalRecords read = repository.read(medicalRecords.getRecordID());
        assertNotNull(read);
-       System.out.println("Read: "+read);
+       System.out.println("Read: "+read.toString());
    }
    
    @Test 

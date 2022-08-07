@@ -1,5 +1,5 @@
 /* MedicalRecordsFactoryTest.java
-   Factory Test for the MedicalsRecords
+   Factory Test for the MedicalsRecords(220110530)
    Author: Duncan Benjamin Harris
    Date: 08 April 2022 
 */
@@ -9,10 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import za.ac.cput.Entity.MedicalRecords;
 
-/**
- *
- * @author judy
- */
+
 public class MedicalRecordsFactoryTest {
    
     @Test
@@ -24,3 +21,4 @@ public class MedicalRecordsFactoryTest {
         System.out.println(medicalRecords);
     }
 }
+

@@ -1,5 +1,5 @@
 /* AdministrationRepositoryTest.java
-   Repository Test for the administration
+   Repository Test for the administration(220110530)
    Author: Duncan Benjamin Harris
    Date: 08 April 2022 
 */
@@ -12,10 +12,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import za.ac.cput.Entity.Administration;
 import za.ac.cput.Factory.AdministrationFactory;
 
-/**
- *
- * @author judy
- */
+
 @TestMethodOrder(MethodOrderer.Alphanumeric.class) //jUnit5 @TestMethodOrder(MethodOrderer.MethodName.class)
 class AdministrationRepositoryTest 
 {
