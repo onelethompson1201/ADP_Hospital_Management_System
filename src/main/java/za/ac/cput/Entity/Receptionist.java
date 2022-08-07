@@ -1,5 +1,9 @@
 package za.ac.cput.Entity;
-
+/* Receptionist.java
+   Entity for the Receptionist(220021333)
+   Author: Davin Shaun Carstens
+   Date: 08 April 2022
+*/
 public class Receptionist
 {
     private String receptionistID;
@@ -21,19 +25,9 @@ public class Receptionist
         return receptionistID;
     }
 
-    public void setReceptionistID(String receptionistID)
-    {
-        this.receptionistID = receptionistID;
-    }
-
     public String getReceptionistName()
     {
         return receptionistName;
-    }
-
-    public void setReceptionistName(String receptionistName)
-    {
-        this.receptionistName = receptionistName;
     }
 
     public String getReceptionistPassword()
@@ -41,19 +35,9 @@ public class Receptionist
         return receptionistPassword;
     }
 
-    public void setReceptionistPassword(String receptionistPassword)
-    {
-        this.receptionistPassword = receptionistPassword;
-    }
-
     public long getReceptionistTelephoneNumber()
     {
         return receptionistTelephoneNumber;
-    }
-
-    public void setReceptionistTelephoneNumber(long receptionistTelephoneNumber)
-    {
-        this.receptionistTelephoneNumber = receptionistTelephoneNumber;
     }
 
     @Override

@@ -1,5 +1,9 @@
 package za.ac.cput.Entity;
-
+/* Bill.java
+   Entity for the Bill(220021333)
+   Author: Davin Shaun Carstens
+   Date: 08 April 2022
+*/
 public class Bill
 {
     private String billNo;
@@ -19,32 +23,16 @@ public class Bill
         return billNo;
     }
 
-    public void setBillNo(String billNo) {
-        this.billNo = billNo;
-    }
-
     public String getPatientID() {
         return patientID;
-    }
-
-    public void setPatientID(String patientID) {
-        this.patientID = patientID;
     }
 
     public String getPatientName() {
         return patientName;
     }
 
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
-    }
-
     public float getBillAmount() {
         return billAmount;
-    }
-
-    public void setBillAmount(float billAmount) {
-        this.billAmount = billAmount;
     }
 
     @Override
