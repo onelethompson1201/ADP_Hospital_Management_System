@@ -1,4 +1,5 @@
 package za.ac.cput.Entity;
 
-public class Medication {
+public class Medication
+{
 }

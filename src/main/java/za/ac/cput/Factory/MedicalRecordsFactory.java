@@ -7,6 +7,7 @@ package za.ac.cput.Factory;
 
 import za.ac.cput.Entity.MedicalRecords;
 import za.ac.cput.util.Helper;
+import za.ac.cput.util.StringHelper;
 
 public class MedicalRecordsFactory 
 {
@@ -18,7 +19,14 @@ public class MedicalRecordsFactory
                                                     String testResults)
     {
         String recordID = Helper.generateRecordID();
-        
+
+        StringHelper.checkStringParam("recordID",recordID);
+        StringHelper.checkStringParam("patientID",patientID);
+        StringHelper.checkStringParam("patientName",patientName);
+        StringHelper.checkStringParam("patientAge", String.valueOf(patientAge));
+        StringHelper.checkStringParam("patientSex",patientSex);
+        StringHelper.checkStringParam("testResults",testResults);
+
         MedicalRecords medicalRecords = new MedicalRecords.Builder().setRecordID(recordID).
                 setPatientID(patientID).
                 setPatientName(patientName).
