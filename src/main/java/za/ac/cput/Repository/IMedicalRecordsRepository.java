@@ -6,9 +6,11 @@
 package za.ac.cput.Repository;
 
 import java.util.Set;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import za.ac.cput.Entity.MedicalRecords;
 
-public interface IMedicalRecordsRepository extends IRepository <MedicalRecords, String>
+public interface IMedicalRecordsRepository extends JpaRepository<MedicalRecords, String>
 {
-    public Set<MedicalRecords> getAll();
+
 }

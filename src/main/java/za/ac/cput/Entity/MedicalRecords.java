@@ -5,14 +5,28 @@
 */
 package za.ac.cput.Entity;
 
-public class MedicalRecords 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
+
+@Entity
+public class MedicalRecords
 {
+    @Id
     private String recordID;
+    @NotNull
     private String patientID;
+    @NotNull
     private String patientName;
+    @NotNull
     private int patientAge;
+    @NotNull
     private String patientSex;
+    @NotNull
     private String testResults;
+
+    protected MedicalRecords(){}
 
     private MedicalRecords(Builder builder)
     {
@@ -47,30 +61,6 @@ public class MedicalRecords
 
     public String getTestResults() {
         return testResults;
-    }
-
-    public void setRecordID(String recordID) {
-        this.recordID = recordID;
-    }
-
-    public void setPatientID(String patientID) {
-        this.patientID = patientID;
-    }
-
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
-    }
-
-    public void setPatientAge(int patientAge) {
-        this.patientAge = patientAge;
-    }
-
-    public void setPatientSex(String patientSex) {
-        this.patientSex = patientSex;
-    }
-
-    public void setTestResults(String testResults) {
-        this.testResults = testResults;
     }
 
     @Override
@@ -133,5 +123,21 @@ public class MedicalRecords
         {
             return new MedicalRecords(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(this == obj)
+            return true;
+        if(obj == null || getClass() != obj.getClass())
+            return false;
+        MedicalRecords medicalRecords = (MedicalRecords) obj;
+        return recordID.equals(medicalRecords.recordID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(recordID);
     }
 }
