@@ -15,7 +15,8 @@ public class DepartmentFactory {
 
         // String departmentID = Helper.generateDepartmentID();
 
-        return new Department.Builder().setDepartmentID(departmentID)
+        return new Department.Builder()
+                .setDepartmentID(departmentID)
                 .setDepartmentName(departmentName)
                 .setDepartmentSize(departmentSize)
                 .build();

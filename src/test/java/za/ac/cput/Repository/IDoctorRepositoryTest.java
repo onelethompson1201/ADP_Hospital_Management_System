@@ -5,17 +5,19 @@
 */
 
 package za.ac.cput.Repository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+
+import org.junit.jupiter.api.*;
 import za.ac.cput.Entity.Department;
 import za.ac.cput.Entity.Doctor;
 import za.ac.cput.Entity.MedicalRecords;
 import za.ac.cput.Factory.DepartmentFactory;
 import za.ac.cput.Factory.DoctorFactory;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class IDoctorRepositoryTest {
 
     private IDoctorRepository repository;
@@ -30,9 +32,31 @@ class IDoctorRepositoryTest {
     }
 
     @Test
+    @Order(1)
     void save(){
         Doctor save = this.repository.save(this.doctor);
         assertEquals(this.doctor,save);
+    }
+
+    @Test
+    @Order(2)
+    void read() {
+        Doctor read = this.repository.getById(this.doctor.getDoctorID());
+    }
+
+    @Test
+    @Order(3)
+    void findAll() {
+        List<Doctor> doctorsList = this.repository.findAll();
+        assertSame(1, doctorsList.size());
+    }
+
+    @Test
+    @Order(4)
+    void delete() {
+        this.repository.deleteById(this.doctor.getDoctorID());
+        List<Doctor> doctorsList = this.repository.findAll();
+        assertSame(0, doctorsList.size());
     }
 
 }

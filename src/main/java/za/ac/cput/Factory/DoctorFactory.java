@@ -8,8 +8,8 @@ package za.ac.cput.Factory;
 
 
 import za.ac.cput.Entity.Department;
-import za.ac.cput.Entity.Doctor;
-import za.ac.cput.util.Helper;
+        import za.ac.cput.Entity.Doctor;
+        import za.ac.cput.util.Helper;
 
 public class DoctorFactory {
     public static Doctor createDoctor(String doctorName, String doctorPassword,
