@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 /**
  Patient.Java
@@ -19,11 +20,17 @@ public class Patient {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private String patientID;
+    @NotNull
     private String patientName;
+    @NotNull
     private String address;
+    @NotNull
     private long phone_number;
+    @NotNull
     private String sex;
+    @NotNull
     private int age;
+    @NotNull
     private String patientPassword;
 
 

@@ -1,6 +1,7 @@
 package za.ac.cput.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  TestPatient.Java
@@ -16,6 +17,7 @@ public class TestPatient {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private String testID;
+    @NotNull
     private String testName;
     @EmbeddedId
     private String patientID;
