@@ -1,15 +1,28 @@
 /*  Department.java
     Entity for the Department
     Author: Chante Lee Davids [220246688]
-    Date  : 6 April 2022
+    Date  : 6 August 2022
 */
 
 package za.ac.cput.Entity;
 
-public class Department {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
+import java.util.Objects;
+
+@Entity
+public class Department implements Serializable {
+
+    @Id
+    //@ColumnName(name = "department_id")
     private String departmentID;
+
     private String departmentName;
     private int departmentSize;
+
+    protected Department() {
+    }
 
     private Department(Builder builder){
         this.departmentID = builder.departmentID;
@@ -17,28 +30,30 @@ public class Department {
         this.departmentSize = builder.departmentSize;
     }
 
+    //getters
     public String getDepartmentID() {
         return departmentID;
-    }
-
-    public void setDepartmentID(String departmentID) {
-        this.departmentID = departmentID;
     }
 
     public String getDepartmentName() {
         return departmentName;
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-    }
-
     public int getDepartmentSize() {
         return departmentSize;
     }
 
-    public void setDepartmentSize(int departmentSize) {
-        this.departmentSize = departmentSize;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Department department = (Department) o;
+        return Objects.equals(departmentID, department.departmentID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(departmentID);
     }
 
     @Override
