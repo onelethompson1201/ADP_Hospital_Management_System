@@ -1,7 +1,7 @@
 /*  DepartmentFactoryTest.java
     Test for the DepartmentFactory
     Author: Chante Lee Davids [220246688]
-    Date  : 6 April 2022
+    Date  : 6 August 2022
 */
 
 package za.ac.cput.Factory;
@@ -16,9 +16,8 @@ class DepartmentFactoryTest {
     @Test
     void createDepartment() {
 
-        Department department = DepartmentFactory.createDepartment("Nursing Department", 145);
+        Department department = DepartmentFactory.createDepartment("NU","Nursing Unit", 50);
         assertNotNull(department);
         System.out.println(department);
-
     }
 }

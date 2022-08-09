@@ -1,22 +1,39 @@
 package za.ac.cput.Entity;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
 /**
  Patient.Java
  AUTHOR: Nolubabalo Ndongeni
  Student number: 219319464
  Date: 10 April 2022
+ Date: 07 August 2022
  **/
+
+@Entity
 public class Patient {
+
+    @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private String patientID;
+    @NotNull
     private String patientName;
+    @NotNull
     private String address;
+    @NotNull
     private long phone_number;
+    @NotNull
     private String sex;
+    @NotNull
     private int age;
+    @NotNull
     private String patientPassword;
 
-    private Patient(){
 
-    }
     private Patient (Builder builder){
         this.patientID = builder.patientID;
         this.patientName = builder.patientName;
@@ -27,60 +44,36 @@ public class Patient {
         this.patientPassword = builder.patientPassword;
     }
 
-    public String getPatientID() {
-        return patientID;
+    public Patient() {
+
     }
 
-    public void setPatientID(String patientID) {
-        this.patientID = patientID;
+    public String getPatientID() {
+        return patientID;
     }
 
     public String getPatientName() {
         return patientName;
     }
 
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
-    }
-
     public String getAddress() {
         return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public long getPhone_number() {
         return phone_number;
     }
 
-    public void setPhone_number(long phone_number) {
-        this.phone_number = phone_number;
-    }
-
     public String getSex() {
         return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getPatientPassword() {
         return patientPassword;
-    }
-
-    public void setPatientPassword(String patientPassword) {
-        this.patientPassword = patientPassword;
     }
 
     @Override
