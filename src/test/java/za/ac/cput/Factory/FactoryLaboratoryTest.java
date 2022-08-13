@@ -8,9 +8,10 @@ import za.ac.cput.util.Helper;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * @author Chuma Edward Nxazonke
+ * @author Chuma Nxazonke
  * Student number: 219181187
  * Date: 09 April 2022
+ *
  *
  */
 
@@ -19,9 +20,9 @@ class FactoryLaboratoryTest {
     @Test
     public void test() {
         Laboratory laboratory = FactoryLaboratory.createLaboratory(
-                "Science lab",
-                "Monday at 2pm",
-                85.54);
+                "Medical laboratory",
+                "Monday at 11am",
+                200);
         System.out.println(laboratory.toString());
         assertNotNull(laboratory);
 
