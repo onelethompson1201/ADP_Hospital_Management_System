@@ -25,8 +25,8 @@ class FactoryAppointmentTest {
     public void test() {
         Appointment appointment = FactoryAppointment.createAppointment(
                 "Sickness",
-        "I have a headache",
-        "On monday at 1pm",
+        "I have a flue",
+        "On monday at 11am",
         "12 April 2022");
         System.out.println(appointment.toString());
         assertNotNull(appointment);
