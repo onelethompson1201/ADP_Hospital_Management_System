@@ -1,20 +1,27 @@
 package za.ac.cput.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-/**
+/*
  Patient.Java
  AUTHOR: Nolubabalo Ndongeni
  Student number: 219319464
  Date: 10 April 2022
  Date: 07 August 2022
- **/
+ */
 
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table
 public class Patient {
 
     @Id
@@ -44,37 +51,6 @@ public class Patient {
         this.patientPassword = builder.patientPassword;
     }
 
-    public Patient() {
-
-    }
-
-    public String getPatientID() {
-        return patientID;
-    }
-
-    public String getPatientName() {
-        return patientName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public long getPhone_number() {
-        return phone_number;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public String getPatientPassword() {
-        return patientPassword;
-    }
 
     @Override
     public String toString() {
