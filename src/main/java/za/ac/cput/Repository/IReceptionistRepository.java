@@ -1,8 +1,7 @@
 package za.ac.cput.Repository;
 /* IReceptionistRepository.java
-   Entity for the IReceptionistRepository(220021333)
+   Repository Class: IReceptionistRepository(220021333)
    Author: Davin Shaun Carstens
-   Date: 08 April 2022
 */
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

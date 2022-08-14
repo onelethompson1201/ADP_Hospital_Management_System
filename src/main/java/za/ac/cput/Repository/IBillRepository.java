@@ -1,8 +1,7 @@
 package za.ac.cput.Repository;
 /* IBillRepository.java
-   Entity for the IBillRepository(220021333)
+   Repository Class: IBillRepository(220021333)
    Author: Davin Shaun Carstens
-   Date: 08 April 2022
 */
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
