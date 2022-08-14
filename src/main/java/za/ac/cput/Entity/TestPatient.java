@@ -1,5 +1,10 @@
 package za.ac.cput.Entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +16,12 @@ import javax.validation.constraints.NotNull;
  Date: 07 August 2022
  **/
 
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table
 public class TestPatient {
 
     @Id
@@ -19,7 +29,7 @@ public class TestPatient {
     private String testID;
     @NotNull
     private String testName;
-    @EmbeddedId
+    @NotNull
     private String patientID;
 
     private TestPatient (Builder builder) {
@@ -28,21 +38,6 @@ public class TestPatient {
         this.patientID = builder.patientID;
     }
 
-    public TestPatient() {
-
-    }
-
-    public String getTestID() {
-        return testID;
-    }
-
-    public String getTestName() {
-        return testName;
-    }
-
-    public String getPatientID() {
-        return patientID;
-    }
 
     @Override
     public String toString() {
