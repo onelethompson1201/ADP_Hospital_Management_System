@@ -6,8 +6,7 @@ package za.ac.cput.Factory;
  Date: 08 May 2022
 */
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api;
+import org.junit.jupiter.api.Test;
 import za.ac.cput.Entity.Medication;
 
 
@@ -17,9 +16,8 @@ public class MedicationFactoryTest
     void createMedication() {
     }
     Medication medication = MedicationFactory.createMedication
-            ("122001", "Adcodol");
-    assertNotNull(medication);
-        System.out.println(medication);
+            ("122001","Adcodol",125F,5);
+   // assertNotNull(medication);
+   // System.out.println(medication);
 }
 
-}

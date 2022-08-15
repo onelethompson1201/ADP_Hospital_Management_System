@@ -1,5 +1,10 @@
 package za.ac.cput.Repository;
 
+/* IMedicationRepositoryTest.java
+ Test for IMedicationRepository
+ Author: Onele Tomson (219483280)
+*/
+
 import org.junit.jupiter.api.*;
 import za.ac.cput.Entity.Medication;
 import za.ac.cput.Factory.MedicationFactory;

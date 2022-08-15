@@ -1,5 +1,9 @@
 package za.ac.cput.Entity;
 
+/* Medication.java
+ Entity for the Medication
+ Author: Onele Tomson (219483280)
+*/
 
 
 public class Medication {

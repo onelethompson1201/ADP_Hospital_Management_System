@@ -1,5 +1,10 @@
 package za.ac.cput.Repository;
 
+/* ITestResultsRepositoryTest.java
+ Test for ITestResultsRepository
+ Author: Onele Tomson (219483280)
+*/
+
 import org.junit.jupiter.api.*;
 import za.ac.cput.Entity.Department;
 import za.ac.cput.Entity.Doctor;
@@ -54,4 +59,3 @@ class ITestResultsRepositoryTest {
     }
 
 }
-
