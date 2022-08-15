@@ -1,5 +1,5 @@
 /* TestResultsFactory.java
- Entity for the TestResultsFactory
+ Factory for TestResults
  Author: Onele Tomson (219483280)
  Date: 08 May 2022
 */
