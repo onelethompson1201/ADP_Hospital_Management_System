@@ -1,7 +1,7 @@
 package za.ac.cput.Factory;
 
 /**
- * @author Chuma Edward Nxazonke
+ * @author Chuma Nxazonke
  * Student number: 219181187
  * Date: 07 April 2022
  * This is an updated version

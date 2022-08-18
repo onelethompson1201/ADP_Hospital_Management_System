@@ -9,11 +9,10 @@ import java.util.Set;
 /**
  * Chuma Nxazonke
  * Student Number: 219181187
- * Date: 08 July 2022
+ * Date: 07 August 2022
  * This is an updated version
  */
 @Repository
 public interface ILaboratoryRepository extends JpaRepository<Laboratory, String> {
 
-    public Set<Laboratory> getAll();
 }
