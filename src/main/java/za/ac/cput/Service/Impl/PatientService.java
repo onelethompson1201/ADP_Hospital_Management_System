@@ -40,21 +40,28 @@ public class PatientService implements IPatientService {
         return repository.findById(patientId).orElse(null);
     }
 
+
+    /*
+    @Override
     public Patient getPatientByName(String patientName){
         return repository.findByName(patientName);
+    }*/
+
+    //delete
+    @Override
+    public boolean delete (String patientID){
+
+        if(this.repository.existsById(patientID)){
+            this.repository.deleteById(patientID);
+
+            return true;
+        }
+        return false;
     }
 
     //findAll
     public List<Patient> getPatients(){
         return repository.findAll();
-    }
-
-
-    //delete
-    @Override
-    public void delete(String patientId){
-        repository.deleteById(patientId);
-
     }
 
 

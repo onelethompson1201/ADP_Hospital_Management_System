@@ -22,7 +22,7 @@ class IPatientRepositoryTest {
 
     @BeforeEach
     void setUp(){
-        Patient patient = PatientFactory.createPatient("Azolile Nxumalo","107 Mayday Crescent",765549876,"Male",27,"liveLong@08");
+        Patient patient = PatientFactory.createPatient("Azolile Nxumalo","107 Mayday Crescent",+765549876,"Male",27,"liveLong@08");
         assertNotNull(patient);
         System.out.println(patient);
     }
