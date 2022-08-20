@@ -6,10 +6,7 @@
 
 package za.ac.cput.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -22,8 +19,8 @@ public class Doctor implements Serializable {
     private String doctorName;
     private String doctorPassword;
 
-    @OneToOne
-    @JoinColumn(name = "department_id", referencedColumnName = "department_id")
+    @OneToMany
+    //@JoinColumn(name = "department_id", referencedColumnName = "department_id")
     private Department department;
 
     private String specialty;

@@ -48,16 +48,16 @@ class DepartmentServiceTest {
 
     @Test
     @Order(3)
-    void getDepartments() {
-        List<Department> departmentList = this.repository.findAll();
-        assertSame(1, departmentList.size());
+    void getAll() {
+        System.out.println("Get All: ");
+        System.out.println(service.getAll());
     }
 
     @Test
     @Order(4)
     void delete() {
-        this.repository.deleteById(this.department.getDepartmentID());
-        List<Department> departmentList = this.repository.findAll();
-        assertSame(0, departmentList.size());
+        boolean success = service.delete(this.department.getDepartmentID());
+        assertTrue(success);
+        System.out.println("Deleted: "+ success);
     }
 }

@@ -9,7 +9,9 @@ package za.ac.cput.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import za.ac.cput.Entity.Department;
 
+import java.util.Set;
+
 public interface IDepartmentRepository extends JpaRepository<Department, String>
 {
-
+    public Set<Department> getAll();
 }

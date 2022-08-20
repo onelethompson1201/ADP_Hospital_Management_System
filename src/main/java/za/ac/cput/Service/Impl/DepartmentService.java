@@ -12,7 +12,8 @@ import za.ac.cput.Entity.Department;
 import za.ac.cput.Repository.IDepartmentRepository;
 import za.ac.cput.Service.Interfaces.IDepartmentService;
 
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class DepartmentService implements IDepartmentService {
 
@@ -34,12 +35,16 @@ public class DepartmentService implements IDepartmentService {
     }
 
     @Override
-    public void delete(String departmentId) {
-        repository.deleteById(departmentId);
+    public boolean delete(String departmentId) {
+        if(this.repository.existsById(departmentId)){
+            repository.deleteById(departmentId);
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public List<Department> getDepartments() {
-        return repository.findAll();
+    public Set<Department> getAll() {
+        return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 }

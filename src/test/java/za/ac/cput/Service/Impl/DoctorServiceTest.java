@@ -51,16 +51,16 @@ class DoctorServiceTest {
 
     @Test
     @Order(3)
-    void getDoctors() {
-        List<Doctor> doctorList = this.repository.findAll();
-        assertSame(1, doctorList.size());
+    void getAll() {
+        System.out.println("Get All: ");
+        System.out.println(service.getAll());
     }
 
     @Test
     @Order(4)
     void delete() {
-        this.repository.deleteById(this.doctor.getDoctorID());
-        List<Doctor> doctorList = this.repository.findAll();
-        assertSame(0, doctorList.size());
+        boolean success = service.delete(this.doctor.getDoctorID());
+        assertTrue(success);
+        System.out.println("Deleted: "+ success);
     }
 }
