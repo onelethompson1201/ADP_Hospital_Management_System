@@ -8,8 +8,10 @@ package za.ac.cput.Repository;
 import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import za.ac.cput.Entity.MedicalRecords;
 
+@Repository
 public interface IMedicalRecordsRepository extends JpaRepository<MedicalRecords, String>
 {
 

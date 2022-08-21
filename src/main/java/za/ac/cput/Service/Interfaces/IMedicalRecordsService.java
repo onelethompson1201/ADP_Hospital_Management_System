@@ -9,8 +9,9 @@ import za.ac.cput.Entity.MedicalRecords;
 import za.ac.cput.Service.IService;
 
 import java.util.List;
+import java.util.Set;
 
 public interface IMedicalRecordsService extends IService<MedicalRecords, String>
 {
-    List<MedicalRecords> getAll();
+    Set<MedicalRecords> getAll();
 }

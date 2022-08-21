@@ -5,36 +5,27 @@
 */
 package za.ac.cput.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class MedicalRecords
+public class MedicalRecords implements Serializable
 {
     @Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name = "")
     private String recordID;
-    @NotNull
-    private String patientID;
-    @NotNull
-    private String patientName;
-    @NotNull
-    private int patientAge;
-    @NotNull
-    private String patientSex;
-    @NotNull
-    private String testResults;
+    @ManyToOne
+    @JoinColumn(name = "patientID", referencedColumnName = "patient_ID")
+    private TestResults testResults;
 
     protected MedicalRecords(){}
 
     private MedicalRecords(Builder builder)
     {
        this.recordID = builder.recordID;
-       this.patientID = builder.patientID;
-       this.patientName = builder.patientName;
-       this.patientAge = builder.patientAge;
-       this.patientSex = builder.patientSex;
        this.testResults = builder.testResults;
             
     }
@@ -43,77 +34,36 @@ public class MedicalRecords
         return recordID;
     }
 
-    public String getPatientID() {
-        return patientID;
-    }
-
-    public String getPatientName() {
-        return patientName;
-    }
-
-    public int getPatientAge() {
-        return patientAge;
-    }
-
-    public String getPatientSex() {
-        return patientSex;
-    }
-
-    public String getTestResults() {
+    public TestResults getTestResults() {
         return testResults;
     }
 
     @Override
     public String toString() {
-        return "MedicalRecords{" + "recordID=" + recordID + ", patientID=" + patientID + ", patientName=" + patientName + ", patientAge=" + patientAge + ", patientSex=" + patientSex + ", testResults=" + testResults + '}';
+        return "MedicalRecords{" +
+                "recordID='" + recordID + '\'' +
+                ", testResults=" + testResults +
+                '}';
     }
-    
+
     public static class Builder
     {
         private String recordID;
-        private String patientID;
-        private String patientName;
-        private int patientAge;
-        private String patientSex;
-        private String testResults;
+        private TestResults testResults;
 
         public Builder setRecordID(String recordID) {
             this.recordID = recordID;
             return this;
         }
 
-        public Builder setPatientID(String patientID) {
-            this.patientID = patientID;
-            return this;
-        }
-
-        public Builder setPatientName(String patientName) {
-            this.patientName = patientName;
-            return this;
-        }
-
-        public Builder setPatientAge(int patientAge) {
-            this.patientAge = patientAge;
-            return this;
-        }
-
-        public Builder setPatientSex(String patientSex) {
-            this.patientSex = patientSex;
-            return this;
-        }
-
-        public Builder setTestResults(String testResults) {
+        public Builder setTestResults(TestResults testResults) {
             this.testResults = testResults;
             return this;
         }
-        
+
         public Builder copy(MedicalRecords medicalrecords)
         {
             this.recordID = medicalrecords.recordID;
-            this.patientID = medicalrecords.patientID;
-            this.patientName = medicalrecords.patientName;
-            this.patientAge = medicalrecords.patientAge;
-            this.patientSex = medicalrecords.patientSex;
             this.testResults = medicalrecords.testResults;
             
             return this;
@@ -125,19 +75,19 @@ public class MedicalRecords
         }
     }
 
-    @Override
-    public boolean equals(Object obj)
-    {
-        if(this == obj)
-            return true;
-        if(obj == null || getClass() != obj.getClass())
-            return false;
-        MedicalRecords medicalRecords = (MedicalRecords) obj;
-        return recordID.equals(medicalRecords.recordID);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(recordID);
-    }
+//    @Override
+//    public boolean equals(Object obj)
+//    {
+//        if(this == obj)
+//            return true;
+//        if(obj == null || getClass() != obj.getClass())
+//            return false;
+//        MedicalRecords medicalRecords = (MedicalRecords) obj;
+//        return recordID.equals(medicalRecords.recordID);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(recordID);
+//    }
 }

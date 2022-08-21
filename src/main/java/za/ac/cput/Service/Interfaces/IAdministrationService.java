@@ -8,9 +8,9 @@ package za.ac.cput.Service.Interfaces;
 import za.ac.cput.Entity.Administration;
 import za.ac.cput.Service.IService;
 
-import java.util.List;
+import java.util.Set;
 
 public interface IAdministrationService extends IService<Administration, String>
 {
-    List<Administration> getAll();
+    Set<Administration> getAll();
 }

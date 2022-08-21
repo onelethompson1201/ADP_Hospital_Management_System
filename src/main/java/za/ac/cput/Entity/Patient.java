@@ -36,6 +36,7 @@ public class Patient implements Serializable {
     private int age;
     private String patientPassword;
 
+    protected Patient(){}
 
     private Patient (Builder builder){
         this.patientID = builder.patientID;

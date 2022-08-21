@@ -6,13 +6,21 @@
 
 package za.ac.cput.Entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class TestResults {
 
     private String patientName;
     private String patientSex;
+
+    @Id
     private String testID;
     private String testDate;
     private String testDescription;
+
+    protected TestResults(){}
 
     private TestResults(Builder builder) {
         this.patientName = builder.patientName;

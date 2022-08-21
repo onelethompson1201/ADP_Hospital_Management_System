@@ -5,18 +5,26 @@
 */
 package za.ac.cput.Factory;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import za.ac.cput.Entity.MedicalRecords;
+import za.ac.cput.Entity.Patient;
+import za.ac.cput.Entity.TestResults;
 
 
 public class MedicalRecordsFactoryTest {
-   
+
     @Test
     void createMedicalRecords()
     {
-        MedicalRecords medicalRecords = MedicalRecordsFactory.createMedicalRecords
-                                        ("7672676272", "James", 27, "Male", "Postive for Aids");
+
+        TestResults testResults = TestResultsFactory.createTestResults("Duncan"
+                ,"Male"
+                ,"22"
+                ,"220"
+                ,"negative");
+        MedicalRecords medicalRecords = MedicalRecordsFactory.createMedicalRecords(testResults);
         assertNotNull(medicalRecords);
         System.out.println(medicalRecords);
     }
