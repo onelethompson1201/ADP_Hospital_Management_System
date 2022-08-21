@@ -4,12 +4,25 @@ package za.ac.cput.Entity;
    Author: Davin Shaun Carstens
    Date: 08 April 2022
 */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+@Entity
 public class Bill
 {
-    private String billNo;
+    @Id
+    @Column(name = "patient_id")
     private String patientID;
+    @NotNull
+    private String billNo;
+    @NotNull
     private String patientName;
+    @NotNull
     private float billAmount;
+    protected Bill() {
+    }
 
     public Bill(Builder builder)
     {

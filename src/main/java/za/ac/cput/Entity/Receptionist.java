@@ -4,12 +4,26 @@ package za.ac.cput.Entity;
    Author: Davin Shaun Carstens
    Date: 08 April 2022
 */
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+@Entity
 public class Receptionist
 {
+    @Id
+    @Column(name = "receptionist_id")
     private String receptionistID;
+    @NotNull
     private String receptionistName;
+    @NotNull
     private String receptionistPassword;
+    @NotNull
     private long receptionistTelephoneNumber;
+    protected Receptionist() {
+    }
 
     private Receptionist(Builder builder)
     {
@@ -17,7 +31,6 @@ public class Receptionist
         this.receptionistName = builder.receptionistName;
         this.receptionistPassword = builder.receptionistPassword;
         this.receptionistTelephoneNumber = builder.receptionistTelephoneNumber;
-
     }
 
     public String getReceptionistID()
