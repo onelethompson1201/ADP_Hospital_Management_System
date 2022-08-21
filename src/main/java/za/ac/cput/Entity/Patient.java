@@ -1,12 +1,10 @@
 package za.ac.cput.Entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import lombok.Getter;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Objects;
 
 /*
  Patient.Java
@@ -16,28 +14,26 @@ import javax.validation.constraints.NotNull;
  Date: 07 August 2022
  */
 
-@Setter
+
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table
-public class Patient {
+public class Patient implements Serializable {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column(name= "patient_id")
     private String patientID;
-    @NotNull
+
     private String patientName;
-    @NotNull
+
     private String address;
-    @NotNull
+
     private long phone_number;
-    @NotNull
+
     private String sex;
-    @NotNull
+
     private int age;
-    @NotNull
     private String patientPassword;
 
 
@@ -122,5 +118,18 @@ public class Patient {
 
             return new Patient(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Patient patient = (Patient) o;
+        return patientID.equals(patient.patientID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(patientID);
     }
 }

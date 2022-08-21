@@ -26,7 +26,7 @@ public class TestPatientService implements ITestPatientService {
 
 
 
-    //create or save
+    //save
     @Override
     public TestPatient save(TestPatient testPatient){
         return repository.save(testPatient);
@@ -41,8 +41,14 @@ public class TestPatientService implements ITestPatientService {
 
     //delete
     @Override
-    public void delete(String testID){
-        repository.deleteById(testID);
+    public boolean delete (String testID){
+
+        if(this.repository.existsById(testID)){
+            this.repository.deleteById(testID);
+
+            return true;
+        }
+        return false;
     }
 
     //findAll

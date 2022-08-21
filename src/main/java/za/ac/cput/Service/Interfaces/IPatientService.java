@@ -13,6 +13,6 @@ Date: 13 August 2022
 
 public interface IPatientService extends IService<Patient, String> {
     List<Patient> getPatients();
-    Patient getPatientByName(String patientName);
+    //Patient getPatientByName(String patientName);
 
 }

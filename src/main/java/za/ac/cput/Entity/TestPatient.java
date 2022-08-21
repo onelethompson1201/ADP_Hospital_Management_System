@@ -1,12 +1,9 @@
 package za.ac.cput.Entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Objects;
 
 /**
  TestPatient.Java
@@ -16,26 +13,29 @@ import javax.validation.constraints.NotNull;
  Date: 07 August 2022
  **/
 
-@Setter
+
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table
-public class TestPatient {
+public class TestPatient  implements Serializable {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column(name = "test_id")
     private String testID;
-    @NotNull
+
     private String testName;
-    @NotNull
-    private String patientID;
+
+    @ManyToOne
+    @JoinColumn(name = "patient_id", referencedColumnName = "patient_id")
+    private Patient patient;
+
+    protected TestPatient(){}
 
     private TestPatient (Builder builder) {
         this.testID = builder.testID;
         this.testName = builder.testName;
-        this.patientID = builder.patientID;
+        this.patient = builder.patient;
     }
 
 
@@ -44,14 +44,14 @@ public class TestPatient {
         return "TestPatient{" +
                 "testID='" + testID + '\'' +
                 ", testName='" + testName + '\'' +
-                ", patientID='" + patientID + '\'' +
+                ", patient='" + patient + '\'' +
                 '}';
     }
 
     public static class Builder{
         private String testID;
         private String testName;
-        private String patientID;
+        private Patient patient;
 
 
         public Builder setTestID(String testID) {
@@ -64,15 +64,15 @@ public class TestPatient {
             return this;
         }
 
-        public Builder setPatientID(String patientID) {
-            this.patientID = patientID;
+        public Builder setPatient(Patient patient) {
+            this.patient = patient;
             return this;
         }
 
         public Builder copy(TestPatient testPatient){
             this.testID = testPatient.testID;
             this.testName = testPatient.testName;
-            this.patientID = testPatient.patientID;
+            this.patient = patient;
             return this;
         }
 
@@ -81,4 +81,15 @@ public class TestPatient {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TestPatient testPatient = (TestPatient) o;
+        return testID.equals( testPatient.testID) ;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(testID);
+    }
 }

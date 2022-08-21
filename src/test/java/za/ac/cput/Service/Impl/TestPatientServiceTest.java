@@ -1,7 +1,10 @@
-package za.ac.cput.Service;
+package za.ac.cput.Service.Impl;
 
 import org.junit.jupiter.api.*;
+import org.springframework.boot.test.context.SpringBootTest;
+import za.ac.cput.Entity.Patient;
 import za.ac.cput.Entity.TestPatient;
+import za.ac.cput.Factory.PatientFactory;
 import za.ac.cput.Factory.TestPatientFactory;
 import za.ac.cput.Repository.ITestPatientRepository;
 import za.ac.cput.Service.Impl.TestPatientService;
@@ -18,46 +21,46 @@ Date: 14 August 2022
  */
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@SpringBootTest
 class TestPatientServiceTest {
 
     private ITestPatientRepository repository;
     private TestPatientService service;
 
     private TestPatient testPatient;
+    private Patient patient;
 
     @BeforeEach
     void setUp(){
         this.service = new TestPatientService(repository);
-        this.testPatient = TestPatientFactory.createTestPatient("Drug test");
+        this.patient = PatientFactory.createPatient("Anovuyo Mango", "67 Singxigxi Street", +782793833, "Female", 18, "healthy@0899");
+        this.testPatient = TestPatientFactory.createTestPatient("Drug test", patient);
         assertNotNull(testPatient);
     }
 
     @Test
-    @Order(1)
-    void save() {
+
+    void a_save() {
         TestPatient save  = this.repository.save(this.testPatient);
         assertEquals(this.testPatient, save);
     }
 
     @Test
-    @Order(2)
-    void read() {
+    void b_read() {
         TestPatient read = this.repository.findById(this.testPatient.getTestID()).orElse(null);
         assertEquals(this.testPatient, read);
     }
 
 
     @Test
-    @Order(4)
-    void delete() {
+    void d_delete() {
         this.repository.deleteById(this.testPatient.getTestID());
         List<TestPatient> testPatientList = this.repository.findAll();
         assertSame(0, testPatientList.size());
     }
 
     @Test
-    @Order(3)
-    void getTestPatients(){
+    void c_getTestPatients(){
         List<TestPatient> testPatientList = this.repository.findAll();
         assertSame(1, testPatientList.size());
     }
