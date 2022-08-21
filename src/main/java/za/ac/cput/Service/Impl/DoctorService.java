@@ -13,6 +13,8 @@ import za.ac.cput.Repository.IDoctorRepository;
 import za.ac.cput.Service.Interfaces.IDoctorService;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class DoctorService implements IDoctorService {
 
@@ -34,12 +36,16 @@ public class DoctorService implements IDoctorService {
     }
 
     @Override
-    public void delete(String doctorId) {
-        repository.deleteById(doctorId);
+    public boolean delete(String doctorId) {
+        if(this.repository.existsById(doctorId)){
+            repository.deleteById(doctorId);
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public List<Doctor> getDoctors() {
-        return repository.findAll();
+    public Set<Doctor> getAll() {
+        return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 }

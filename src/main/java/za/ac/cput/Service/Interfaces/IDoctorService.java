@@ -9,9 +9,8 @@ package za.ac.cput.Service.Interfaces;
 
 import za.ac.cput.Entity.Doctor;
 import za.ac.cput.Service.IService;
-
-import java.util.List;
+import java.util.Set;
 
 public interface IDoctorService extends IService<Doctor, String> {
-    List<Doctor> getDoctors();
+    public Set<Doctor> getAll();
 }
