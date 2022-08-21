@@ -6,12 +6,16 @@
 package za.ac.cput.Service.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import za.ac.cput.Entity.MedicalRecords;
 import za.ac.cput.Repository.IMedicalRecordsRepository;
 import za.ac.cput.Service.Interfaces.IMedicalRecordsService;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+@Service
 public class MedicalRecordsService implements IMedicalRecordsService
 {
     private final IMedicalRecordsRepository repository;
@@ -29,18 +33,23 @@ public class MedicalRecordsService implements IMedicalRecordsService
 
     @Override
     public MedicalRecords read(String recordID) {
-        return this.repository.getById(recordID);
+        return this.repository.findById(recordID).orElse(null);
     }
 
     @Override
-    public void delete(String recordID)
+    public boolean delete(String recordID)
     {
-        this.repository.deleteById(recordID);
+        if(this.repository.existsById(recordID))
+        {
+            this.repository.deleteById(recordID);
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public List<MedicalRecords> getAll()
+    public Set<MedicalRecords> getAll()
     {
-        return this.repository.findAll();
+        return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 }

@@ -10,6 +10,8 @@ import za.ac.cput.Factory.AdministrationFactory;
 import za.ac.cput.Repository.IAdministrationRepository;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -52,15 +54,15 @@ class AdministrationServiceTest {
     void delete()
     {
         this.repository.deleteById(this.administration.getAdminID());
-        List<Administration> administrationList = this.repository.findAll();
-        assertSame(0, administrationList.size());
+        Set<Administration> administrationSet = this.repository.findAll().stream().collect(Collectors.toSet());
+        assertSame(0, administrationSet.size());
     }
 
     @Test
     @Order(3)
     void getAll()
     {
-        List<Administration> administrationList = this.repository.findAll();
-        assertSame(1, administrationList.size());
+        Set<Administration> administrationSet = this.repository.findAll().stream().collect(Collectors.toSet());
+        assertSame(1, administrationSet.size());
     }
 }

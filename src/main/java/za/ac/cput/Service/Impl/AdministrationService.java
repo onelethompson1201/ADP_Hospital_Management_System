@@ -6,12 +6,15 @@
 package za.ac.cput.Service.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import za.ac.cput.Entity.Administration;
 import za.ac.cput.Repository.IAdministrationRepository;
 import za.ac.cput.Service.Interfaces.IAdministrationService;
 
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+@Service
 public class AdministrationService implements IAdministrationService
 {
     private final IAdministrationRepository repository;
@@ -30,17 +33,22 @@ public class AdministrationService implements IAdministrationService
 
     @Override
     public Administration read(String adminID) {
-        return this.repository.getById(adminID);
+        return this.repository.findById(adminID).orElse(null);
     }
 
     @Override
-    public void delete(String adminID) {
-        this.repository.deleteById(adminID);
+    public boolean delete(String adminID) {
+        if(this.repository.existsById(adminID))
+        {
+            this.repository.deleteById(adminID);
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public List<Administration> getAll()
+    public Set<Administration> getAll()
     {
-        return this.repository.findAll();
+        return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 }
