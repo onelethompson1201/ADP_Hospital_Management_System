@@ -3,8 +3,8 @@ package za.ac.cput.Repository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import za.ac.cput.Entity.Laboratory;
-import za.ac.cput.Factory.FactoryLaboratory;
+import za.ac.cput.Entity.*;
+import za.ac.cput.Factory.*;
 
 import java.util.List;
 
@@ -25,7 +25,12 @@ class ILaboratoryRepositoryTest {
     @BeforeEach
     void setUp(){
 
-Laboratory laboratory = FactoryLaboratory.createLaboratory("Medical lab","Monday", 200);
+        Department department = DepartmentFactory.createDepartment("NU", "Nursing Unit", 50);
+        Doctor doctor = DoctorFactory.createDoctor("Chante Davids", "RandomPassword123", department,"Midwife Nurse");
+        TestPatient testPatient = TestPatientFactory.createTestPatient("Urine Test");
+        Patient patient = PatientFactory.createPatient("Azolile Nxumalo","107 Mayday Crescent",765549876,"Male",27,"liveLong@08");
+        Laboratory laboratory = FactoryLaboratory.createLaboratory(patient, doctor, testPatient,"Unit 23", "Tuesday", 500);
+
         assertNotNull(laboratory);
         System.out.println(laboratory);
     }
@@ -40,7 +45,7 @@ Laboratory laboratory = FactoryLaboratory.createLaboratory("Medical lab","Monday
     @Test
     @Order(2)
     void read() {
-        Laboratory read = this.repository.getById(this.laboratory.getDoctorId());
+        Laboratory read = this.repository.getById(this.laboratory.getLabID());
     }
 
     @Test
@@ -53,7 +58,7 @@ Laboratory laboratory = FactoryLaboratory.createLaboratory("Medical lab","Monday
     @Test
     @Order(4)
     void delete() {
-        this.repository.deleteById(this.laboratory.getDoctorId());
+        this.repository.deleteById(this.laboratory.getLabID());
         List<Laboratory> laboratoryList = this.repository.findAll();
         assertSame(0, laboratoryList.size());
     }

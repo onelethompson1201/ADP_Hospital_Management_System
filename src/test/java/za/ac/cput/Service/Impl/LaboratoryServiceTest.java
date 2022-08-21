@@ -1,8 +1,8 @@
 package za.ac.cput.Service.Impl;
 
 import org.junit.jupiter.api.*;
-import za.ac.cput.Entity.Laboratory;
-import za.ac.cput.Factory.FactoryLaboratory;
+import za.ac.cput.Entity.*;
+import za.ac.cput.Factory.*;
 import za.ac.cput.Repository.ILaboratoryRepository;
 import za.ac.cput.Service.Interfaces.ILaboratoryService;
 
@@ -25,13 +25,22 @@ class LaboratoryServiceTest {
 
 
     private Laboratory laboratory;
+    private Doctor doctor;
+    private Department department;
+    private Patient patient;
+    private TestPatient testPatient;
 
 
     @BeforeEach
     void setUp() {
 
         this.laboratoryService = new LaboratoryService(repository);
-        this.laboratory = FactoryLaboratory.createLaboratory("Health lab", "On Monday", 100.00);
+       this.department = DepartmentFactory.createDepartment("NU", "Nursing Unit", 50);
+        this.doctor = DoctorFactory.createDoctor("Chante Davids", "RandomPassword123", department,"Midwife Nurse");
+         this.testPatient = TestPatientFactory.createTestPatient("Urine Test");
+        this.patient = PatientFactory.createPatient("Azolile Nxumalo","107 Mayday Crescent",765549876,"Male",27,"liveLong@08");
+        Laboratory laboratory = FactoryLaboratory.createLaboratory(patient, doctor, testPatient,"Unit 23", "Tuesday", 500);
+
         assertNotNull(laboratory);
     }
 
