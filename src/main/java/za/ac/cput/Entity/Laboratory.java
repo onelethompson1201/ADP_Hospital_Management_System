@@ -4,7 +4,14 @@ package za.ac.cput.Entity;
 //In this class will implement an entity called Laboratory using a builder pattern.
 //This is Laboratory.java
 
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  *
@@ -13,17 +20,36 @@ import java.util.Date;
  * Date: 06 April 2022
  */
 
-
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table
+@Entity
 
 public class Laboratory {
 //Declaring all the  private fields we are going to use on our program
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String labID;
-    private String patientID;
-    private String doctorID;
-    private String patientTestID;
+
+    @OneToOne
+    @JoinColumn(name = "patient_Id", referencedColumnName = "patient_Id")
+    private Patient patient;
+
+    @OneToOne
+    @JoinColumn(name = "doctor_Id", referencedColumnName = "doctor_Id")
+    private Doctor doctor;
+
+    @OneToOne
+    @JoinColumn(name = "testPatient_Id", referencedColumnName = "testPatient_Id")
+    private TestPatient testPatient;
+    @NotNull
     private String labName;
+    @NotNull
     private String labDay;
+    @NotNull
     private double amount;
 
 
@@ -32,9 +58,9 @@ public class Laboratory {
     private Laboratory (Builder builder){
 
         this.labID  = builder.labID;
-        this.doctorID = builder.doctorID;
-        this.patientID = builder.patientID;
-        this.patientTestID = builder.patientTestID;
+        this.doctor = builder.build().doctor;
+        this.patient = builder.build().patient;
+        this.testPatient = builder.build().testPatient;
         this.labName = builder.labName;
         this.labDay = builder.labDay;
         this.amount = builder.amount;
@@ -46,16 +72,16 @@ public class Laboratory {
         return labID;
     }
 
-    public String getPatientID() {
-        return patientID;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public String getDoctorId() {
-        return doctorID;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public String getPatientTestID() {
-        return patientTestID;
+    public TestPatient getTestPatient() {
+        return testPatient;
     }
 
     public String getLabName() {
@@ -70,53 +96,46 @@ public class Laboratory {
         return amount;
     }
 
-    public void setLabId(String labID1) {
-        this.labID = labID1;
-    }
 
-    public void setPatientID(String patientID1) {
-        this.patientID = patientID1;
-    }
-
-    public void setDoctorID(String doctorID1) {
-        this.doctorID = doctorID1;
-    }
-
-    public void setPatientTestID(String patientTestID1) {
-        this.patientTestID = patientTestID1;
-    }
-
-    public void setLabName(String labName) {
-        this.labName = labName;
-    }
-
-    public void setLabDay(String labDay1) {
-        this.labDay = labDay1;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
 
     @Override
     public String toString() {
         return "Laboratory{" +
                 "labId='" + labID + '\'' +
-                ", patientId='" + patientID + '\'' +
-                ", doctorId='" + doctorID + '\'' +
-                ", patientTestId='" + patientTestID + '\'' +
+                ", patientId='" + patient + '\'' +
+                ", doctorId='" + doctor + '\'' +
+                ", patientTestId='" + testPatient + '\'' +
                 ", labName='" + labName + '\'' +
                 ", labDate=" + labDay +
                 ", amount=" + amount +
                 '}';
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+       Laboratory laboratory = (Laboratory) o;
+        return labID.equals(laboratory.labID) && patient.equals(laboratory.patient)
+                && doctor.equals(laboratory.doctor) && testPatient.equals(laboratory.testPatient)
+                && labName.equals(laboratory.labName) && labDay.equals(laboratory.labDay);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(labID);
+    }
+
+
+
+
     public static class Builder{
 
         private String labID;
-        private String patientID;
-        private String doctorID;
-        private String patientTestID;
+        private Patient patient;
+        private Doctor doctor;
+        private TestPatient testPatient;
         private String labName;
         private String labDay;
         private double amount;
@@ -126,18 +145,18 @@ public class Laboratory {
             this.labID = labID1;
             return this;
         }
-        public Builder setPatientID (String patientID1){
-            this.patientID = patientID1;
+        public Builder setPatient (Patient patient){
+            this.patient = patient;
             return this;
         }
 
-        public Builder setDoctorId (String doctorID1){
-            this.doctorID = doctorID1;
+        public Builder setDoctor (Doctor doctor){
+            this.doctor = doctor;
             return this;
         }
 
-        public Builder setPatientTestID (String testID1){
-            this.patientTestID = testID1;
+        public Builder setTestPatient (TestPatient testPatient){
+            this.testPatient = testPatient;
             return this;
         }
 
@@ -159,9 +178,9 @@ public class Laboratory {
         public Builder Copy (Laboratory laboratory){
 
             this.labID = laboratory.labID;
-            this.patientID = laboratory.patientID;
-            this.doctorID = laboratory.doctorID;
-            this.patientTestID = laboratory.patientTestID;
+           this.patient = laboratory.patient;
+            this.doctor = laboratory.doctor;
+            this.testPatient = laboratory.testPatient;
             this.labName = laboratory.labName;
             this.labDay = laboratory.labDay;
             this.amount = laboratory.amount;
@@ -175,5 +194,9 @@ public class Laboratory {
         }
 
     }
+
+
+
+
 
 }

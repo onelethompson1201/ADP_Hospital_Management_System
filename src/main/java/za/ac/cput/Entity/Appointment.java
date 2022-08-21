@@ -5,31 +5,50 @@ package za.ac.cput.Entity;
 //This is Appointment.java
 
 
-import java.sql.Time;
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * @author Chuma Nxazonke
  * Student number: 219181187
  * Date: 06 April 2022
  */
-
-
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table
+@Entity
 public class Appointment {
     //Declaring all the fields for the program as private fields
-
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
     private String appointmentID;
-    private  String doctorID;
+
+   @OneToOne
+   @JoinColumn(name = "doctor_Id", referencedColumnName = "doctor_Id")
+    private  Doctor doctor;
+
+    @NotNull
     private String appointmentType;
+    @NotNull
     private   String appointmentDescription;
+    @NotNull
     private  String appointmentDay;
+    @NotNull
     private String appointmentMonth;
 
 //Creating a private parametrized constructor
 
     private Appointment (Builder builder){
         this.appointmentID  = builder.appointmentID;
-        this.doctorID = builder.doctorID;
+        this.doctor = builder.build().doctor;
         this.appointmentType = builder.appointmentType;
         this.appointmentDescription = builder.appointmentDescription;
         this.appointmentDay = builder.appointmentDay;
@@ -38,62 +57,36 @@ public class Appointment {
 
     }
 
-    public String getAppointmentID (){
+
+    public String getAppointmentID() {
         return appointmentID;
     }
 
-    public void setAppointmentID(String appointmentID1){
-        this.appointmentID = appointmentID1;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public String getDoctorID (){
-        return doctorID;
+    public String getAppointmentType() {
+        return appointmentType;
     }
 
-    public void setDoctorID (String doctorID1){
-        this.doctorID = doctorID1;
-    }
-
-    public String getAppointmentType (){
-        return  appointmentType;
-    }
-
-    public void setAppointmentType (String appointmentType1){
-        this.appointmentType = appointmentType1;
-    }
-
-    public String getAppointmentDescription (){
+    public String getAppointmentDescription() {
         return appointmentDescription;
     }
 
-    public void setAppointmentDescription (String appointmentDescription1){
-
-        this.appointmentDescription = appointmentDescription1;
-    }
-
-    public String getAppointmentDay (){
+    public String getAppointmentDay() {
         return appointmentDay;
     }
 
-    public void setAppointmentDay (String appointmentDay1){
-
-        this.appointmentDay = appointmentDay1;
-    }
-
-    public String getAppointmentMonth (){
+    public String getAppointmentMonth() {
         return appointmentMonth;
-
-    }
-
-    public void setAppointmentMonth (String appointmentMonth1){
-        this.appointmentMonth  = appointmentMonth1;
     }
 
     @Override
     public String toString() {
         return "Appointment{" +
                 "appointmentId='" + appointmentID + '\'' +
-                ", doctorId='" + doctorID + '\'' +
+                ", doctorId='" + doctor + '\'' +
                 ", appointmentType='" + appointmentType + '\'' +
                 ", appointmentDescription='" + appointmentDescription + '\'' +
                 ", appointmentDate=" + appointmentDay +
@@ -101,11 +94,31 @@ public class Appointment {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(this == obj)
+            return true;
+        if(obj == null || getClass() != obj.getClass())
+            return false;
+        Appointment appointment = (Appointment) obj;
+        return appointmentID.equals(appointment.appointmentID) && doctor.equals(appointment.doctor)
+                && appointmentType.equals(appointment.appointmentType) && appointmentDescription.equals(appointment.appointmentDescription)
+                && appointmentDay.equals(appointment.appointmentDay) && appointmentMonth.equals(appointment.appointmentMonth);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(appointmentID);
+    }
+
+
+
     public static class Builder{
         //Declaring all the fields for the program as private fields
 
         private String appointmentID;
-        private  String doctorID;
+        private Doctor doctor;
         private String appointmentType;
         private   String appointmentDescription;
         private  String appointmentDay;
@@ -117,8 +130,8 @@ public class Appointment {
             return this;
         }
 
-        public Builder setDoctorId(String doctorID1){
-            this.doctorID = doctorID1;
+        public Builder setDoctor(Doctor doctor){
+            this.doctor = doctor;
             return this;
         }
 
@@ -146,7 +159,7 @@ public class Appointment {
         public Builder Copy (Appointment appointment){
 
             this.appointmentID = appointment.appointmentID;
-            this.doctorID = appointment.doctorID;
+            this.doctor = appointment.doctor;
             this.appointmentType = appointment.appointmentType;
             this.appointmentDescription = appointment.appointmentDescription;
             this.appointmentDay = appointment.appointmentDay;
@@ -160,9 +173,7 @@ public class Appointment {
             return new Appointment(this);
         }
 
-
     }
-
 
 
 }

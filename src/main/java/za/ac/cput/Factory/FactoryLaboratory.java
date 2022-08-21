@@ -4,9 +4,12 @@ package za.ac.cput.Factory;
 //In this class will implement an entity called Laboratory using a factory pattern.
 //This is Laboratory.java
 
+import za.ac.cput.Entity.Doctor;
 import za.ac.cput.Entity.Laboratory;
 
 
+import za.ac.cput.Entity.Patient;
+import za.ac.cput.Entity.TestPatient;
 import za.ac.cput.util.Helper;
 /**
  *
@@ -18,22 +21,18 @@ import za.ac.cput.util.Helper;
 
 public class FactoryLaboratory {
 
-    public static Laboratory createLaboratory(String labName, String labDay, double amount){
+    public static Laboratory createLaboratory(Patient patient, Doctor doctor, TestPatient testPatient, String labName, String labDay, double amount){
 
         String labID = Helper.generateLaboratoryID();
-        String patientID = Helper.generatePatientID();
-        String doctorID = Helper.generateDoctorID();
-        String testPatientID = Helper.generateTestID();
-
 
         if (Helper.isNullorEmpty(labName) || Helper.isNullorEmpty(labDay))
             return null;
 
 
         Laboratory laboratory = new Laboratory.Builder().setLabID(labID)
-                .setPatientID(patientID)
-                .setDoctorId(doctorID)
-                .setPatientTestID(testPatientID)
+                .setPatient(patient)
+                .setDoctor(doctor)
+                .setTestPatient(testPatient)
                 .setLabName(labName)
                 .setLabDay(labDay)
                 .setAmount(amount)

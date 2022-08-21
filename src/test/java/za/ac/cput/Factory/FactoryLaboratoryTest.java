@@ -1,7 +1,7 @@
 package za.ac.cput.Factory;
 
 import org.junit.jupiter.api.Test;
-import za.ac.cput.Entity.Laboratory;
+import za.ac.cput.Entity.*;
 import za.ac.cput.Factory.FactoryLaboratory;
 import za.ac.cput.util.Helper;
 
@@ -19,10 +19,12 @@ class FactoryLaboratoryTest {
 
     @Test
     public void test() {
-        Laboratory laboratory = FactoryLaboratory.createLaboratory(
-                "Medical laboratory",
-                "Monday at 11am",
-                200);
+        Department department = DepartmentFactory.createDepartment("NU", "Nursing Unit", 50);
+        Doctor doctor = DoctorFactory.createDoctor("Chante Davids", "RandomPassword123", department,"Midwife Nurse");
+        TestPatient testPatient = TestPatientFactory.createTestPatient("Urine Test");
+        Patient patient = PatientFactory.createPatient("Azolile Nxumalo","107 Mayday Crescent",765549876,"Male",27,"liveLong@08");
+        Laboratory laboratory = FactoryLaboratory.createLaboratory(patient, doctor, testPatient,"Unit 23", "Tuesday", 500);
+
         System.out.println(laboratory.toString());
         assertNotNull(laboratory);
 
