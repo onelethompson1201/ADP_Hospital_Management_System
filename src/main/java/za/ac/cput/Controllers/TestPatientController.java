@@ -10,9 +10,15 @@ import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.Entity.Patient;
 import za.ac.cput.Entity.TestPatient;
 import za.ac.cput.Service.Impl.TestPatientService;
-
 import javax.validation.Valid;
 import java.util.Set;
+
+/*
+TestPatientController
+Name: Nolubabalo Ndongeni
+Student number: 219319464
+Date: 21 August 2022
+ */
 
 @RestController
 @RequestMapping("/hospital-management/administration/")

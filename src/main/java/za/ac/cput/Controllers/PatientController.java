@@ -8,10 +8,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.Entity.Patient;
 import za.ac.cput.Service.Impl.PatientService;
-
 import javax.validation.Valid;
 import java.util.Set;
-
+/*
+PatientController
+Name: Nolubabalo Ndongeni
+Student number: 219319464
+Date: 21 August 2022
+ */
 @RestController
 @RequestMapping("/hospital-management/administration/")
 @Slf4j
