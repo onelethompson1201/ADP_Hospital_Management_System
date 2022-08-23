@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.Entity.Patient;
 import za.ac.cput.Entity.TestPatient;
-import za.ac.cput.Service.Impl.PatientService;
 import za.ac.cput.Service.Impl.TestPatientService;
 
 import javax.validation.Valid;
