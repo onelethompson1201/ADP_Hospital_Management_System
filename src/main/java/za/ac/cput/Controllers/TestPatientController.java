@@ -34,10 +34,10 @@ public class TestPatientController {
     }
 
     @GetMapping("getTestPatient/{id}")
-    public ResponseEntity<TestPatient> read(@PathVariable String id){
-        log.info("Read request: {}", id);
+    public ResponseEntity<TestPatient> read(@PathVariable String testID){
+        log.info("Read request: {}", testID);
         try{
-            TestPatient read = this.testPatientService.read(id);
+            TestPatient read = this.testPatientService.read(testID);
             return ResponseEntity.ok(read);
         }catch(IllegalArgumentException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -45,9 +45,9 @@ public class TestPatientController {
     }
 
     @DeleteMapping("deleteTestPatient/{id}")
-    public ResponseEntity<Patient> delete(@PathVariable String id)   {
-        log.info("Delete request:", id);
-        this.testPatientService.delete(id);
+    public ResponseEntity<Patient> delete(@PathVariable String testID)   {
+        log.info("Delete request:", testID);
+        this.testPatientService.delete(testID);
         return ResponseEntity.noContent().build();
     }
 
