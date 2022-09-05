@@ -1,4 +1,4 @@
-package za.ac.cput.Service;
+package za.ac.cput.Service.Impl;
 /* BillServiceImplTest.java
    Test class: BillServiceImplTest(220021333)
    Author: Davin Shaun Carstens
