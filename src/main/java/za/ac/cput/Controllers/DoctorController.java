@@ -6,14 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import za.ac.cput.Entity.Administration;
 import za.ac.cput.Entity.Doctor;
-import za.ac.cput.Entity.Patient;
 import za.ac.cput.Service.Impl.DoctorService;
-import za.ac.cput.Service.Impl.PatientService;
-
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Set;
 
 @RestController
