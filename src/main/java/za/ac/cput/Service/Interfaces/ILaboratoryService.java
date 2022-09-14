@@ -4,6 +4,7 @@ import za.ac.cput.Entity.Laboratory;
 import za.ac.cput.Service.IService;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Chuma Nxazonke
@@ -13,7 +14,7 @@ import java.util.List;
 
 public interface ILaboratoryService extends IService<Laboratory, String> {
 
-    List<Laboratory> getAll();
+    public Set<Laboratory> getAll();
 
 
 }

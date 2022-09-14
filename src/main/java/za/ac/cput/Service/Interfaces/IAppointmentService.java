@@ -4,6 +4,7 @@ import za.ac.cput.Entity.Appointment;
 import za.ac.cput.Service.IService;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Chuma Nxazonke
@@ -12,6 +13,6 @@ import java.util.List;
  */
 
 public interface IAppointmentService extends IService<Appointment, String> {
-    List<Appointment> getAll();
+   public Set<Appointment> getAll();
 
 }
