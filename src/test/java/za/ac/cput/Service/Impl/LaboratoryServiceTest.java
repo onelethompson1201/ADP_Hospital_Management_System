@@ -37,7 +37,7 @@ class LaboratoryServiceTest {
         this.laboratoryService = new LaboratoryService(repository);
        this.department = DepartmentFactory.createDepartment("NU", "Nursing Unit", 50);
         this.doctor = DoctorFactory.createDoctor("Chante Davids", "RandomPassword123", department,"Midwife Nurse");
-         this.testPatient = TestPatientFactory.createTestPatient("Urine Test");
+         this.testPatient = TestPatientFactory.createTestPatient("Urine Test", patient);
         this.patient = PatientFactory.createPatient("Azolile Nxumalo","107 Mayday Crescent",765549876,"Male",27,"liveLong@08");
         Laboratory laboratory = FactoryLaboratory.createLaboratory(patient, doctor, testPatient,"Unit 23", "Tuesday", 500);
 
