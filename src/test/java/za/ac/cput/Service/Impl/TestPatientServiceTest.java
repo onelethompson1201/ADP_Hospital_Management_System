@@ -1,6 +1,7 @@
 package za.ac.cput.Service.Impl;
 
 import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.Entity.Patient;
 import za.ac.cput.Entity.TestPatient;
@@ -20,48 +21,41 @@ Student number: 219319464
 Date: 14 August 2022
  */
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class TestPatientServiceTest {
 
-    private ITestPatientRepository repository;
-    private TestPatientService service;
 
-    private TestPatient testPatient;
+    @Autowired
+    private TestPatientService service;
     private Patient patient;
 
-    @BeforeEach
-    void setUp(){
-        this.service = new TestPatientService(repository);
-        this.patient = PatientFactory.createPatient("Anovuyo Mango", "67 Singxigxi Street", +782793833, "Female", 18, "healthy@0899");
-        this.testPatient = TestPatientFactory.createTestPatient("Drug test", patient);
-        assertNotNull(testPatient);
-    }
+    //private final Patient patient = PatientFactory.createPatient( "Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");;
+    private final TestPatient testPatient = TestPatientFactory.createTestPatient("Drug test", patient);
 
     @Test
-
     void a_save() {
-        TestPatient save  = this.repository.save(this.testPatient);
+        TestPatient save  = service.save(this.testPatient);
         assertEquals(this.testPatient, save);
     }
 
     @Test
     void b_read() {
-        TestPatient read = this.repository.findById(this.testPatient.getTestID()).orElse(null);
-        assertEquals(this.testPatient, read);
+        TestPatient read = service.read(testPatient.getTestID());
+        assertNotNull(read);
     }
 
 
     @Test
     void d_delete() {
-        this.repository.deleteById(this.testPatient.getTestID());
-        List<TestPatient> testPatientList = this.repository.findAll();
-        assertSame(0, testPatientList.size());
+        service.delete(testPatient.getTestID());
+        assertNotNull(testPatient);
+        System.out.println("Deleted: " + testPatient);
     }
 
     @Test
     void c_getTestPatients(){
-        List<TestPatient> testPatientList = this.repository.findAll();
-        assertSame(1, testPatientList.size());
+        System.out.println("Get all testPatients: ");
+        System.out.println(service.getTestPatients());
     }
 }
