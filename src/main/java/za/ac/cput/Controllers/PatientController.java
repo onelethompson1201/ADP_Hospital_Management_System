@@ -24,32 +24,40 @@ public class PatientController {
 
     private final PatientService patientService;
 
-    @Autowired
-    public PatientController(PatientService patientService){
+    @Autowired public PatientController(PatientService patientService){
         this.patientService = patientService;
     }
 
-    @PostMapping("save/patient")
-    public ResponseEntity<Patient> save(@Valid @RequestBody Patient savePatient)
+    @PostMapping("save")
+    public ResponseEntity<Patient> save(@Valid @RequestBody Patient patient)
     {
-       log.info("Save request: {}", savePatient);
+        log.info("Save request: {}", patient);
+        Patient save = patientService.save(patient);
+        return ResponseEntity.ok(save);
+        /*
+
        try{
            Patient patient = this.patientService.save(savePatient);
            return  ResponseEntity.ok(patient);
        }catch (IllegalArgumentException e){
            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
-       }
+       }*/
 
     }
 
     @GetMapping("readPatient/{patientID}")
-    public ResponseEntity<Patient> read(@PathVariable String patientID){
+    public ResponseEntity<Patient> read(@Valid @PathVariable String patientID){
+         /*
+        Patient patient = this.patientService.read(patientID)
+                .orElse(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return ResponseEntity.ok(patient);*/
+
         log.info("Read request: {}", patientID);
         try{
             Patient read = this.patientService.read(patientID);
             return ResponseEntity.ok(read);
         }catch(IllegalArgumentException e){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -60,10 +68,10 @@ public class PatientController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("getPatients/patient")
-    public ResponseEntity<List<Patient>> getAll(){
-        List<Patient> patientList =  this.patientService.getPatients();
-        return ResponseEntity.ok(patientList);
+    @GetMapping("all")
+    public ResponseEntity<List<Patient>> findAll(){
+        List<Patient> patient =  this.patientService.findAll();
+        return ResponseEntity.ok(patient);
     }
 
 
