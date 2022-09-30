@@ -1,6 +1,8 @@
 package za.ac.cput.Repository;
 
 import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.Entity.Patient;
 import za.ac.cput.Entity.TestPatient;
 import za.ac.cput.Factory.PatientFactory;
@@ -10,45 +12,46 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@TestMethodOrder(MethodOrderer.class)
+@SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ITestPatientRepositoryTest {
+    //private Patient patient;
+    private Patient patient = PatientFactory.createPatient( "Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");;
+    private final TestPatient testPatient = TestPatientFactory.createTestPatient("Blood test",patient);
+    @Autowired
     private ITestPatientRepository repository;
-    private TestPatient testPatient;
 
-    @BeforeEach
-    void setUp(){
-        Patient patient = PatientFactory.createPatient("Azolile Nxumalo","107 Mayday Crescent",+765549876,"Male",27,"liveLong@08");
-        TestPatient testPatient = TestPatientFactory.createTestPatient("Blood test", patient);
-        assertNotNull(testPatient);
-        System.out.println(testPatient);
-    }
 
-    @Test
+
     @Order(1)
+    @Test
     void save(){
         TestPatient save = this.repository.save(this.testPatient);
         assertEquals(this.testPatient, save);
     }
 
-    @Test
+
     @Order(2)
+    @Test
     void read(){
-        TestPatient read = this.repository.getById(this.testPatient.getTestID());
+        TestPatient read = this.repository.getReferenceById(this.testPatient.getTestID());
     }
 
-    @Test
+
     @Order(3)
+    @Test
     void findAll(){
         List<TestPatient> testPatientList = this.repository.findAll();
-        assertSame(1, testPatientList.size());
+        assertSame(2, testPatientList.size());
     }
 
-    @Test
+
     @Order(4)
+    @Test
     void delete(){
-        this.repository.deleteById(this.testPatient.getTestID());
+        this.repository.delete(this.testPatient);
         List<TestPatient> testPatientList = this.repository.findAll();
-        assertSame(0, testPatientList.size());
+        assertSame(2, testPatientList.size());
     }
 
 

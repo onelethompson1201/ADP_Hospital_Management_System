@@ -1,6 +1,8 @@
 package za.ac.cput.Repository;
 
 import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.Entity.Patient;
 import za.ac.cput.Factory.PatientFactory;
 
@@ -14,48 +16,44 @@ Student number: 219319464
 Date: 13 August 2022
  */
 
+@SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class IPatientRepositoryTest {
-
+    private final Patient patient = PatientFactory.createPatient( "Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
+    @Autowired
     private IPatientRepository repository;
-    private Patient patient;
 
-    @BeforeEach
-    void setUp(){
-        Patient patient = PatientFactory.createPatient("Azolile Nxumalo","107 Mayday Crescent",+765549876,"Male",27,"liveLong@08");
-        assertNotNull(patient);
-        System.out.println(patient);
-    }
 
-    @Test
+
     @Order(1)
+    @Test
     void save(){
         Patient save = this.repository.save(this.patient);
         assertEquals(this.patient, save);
     }
 
-    @Test
+
     @Order(2)
+    @Test
     void read(){
-        Patient read = this.repository.getById(this.patient.getPatientID());
+        Patient read = this.repository.getReferenceById(this.patient.getPatientID());
     }
 
+    @Order(4)
     @Test
+    void delete(){
+        this.repository.delete(this.patient);
+        List<Patient> patientList = this.repository.findAll();
+        assertSame(10, patientList.size());
+    }
+
+
     @Order(3)
+    @Test
     void findAll(){
         List<Patient> patientList = this.repository.findAll();
-        assertSame(1, patientList.size());
+        assertSame(5, patientList.size());
     }
-
-    @Test
-    @Order(4)
-    void delete(){
-        this.repository.deleteById(this.patient.getPatientID());
-        List<Patient> patientList = this.repository.findAll();
-        assertSame(0, patientList.size());
-    }
-
-
 
 }
 
