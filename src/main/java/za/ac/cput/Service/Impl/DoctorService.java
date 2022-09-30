@@ -21,24 +21,24 @@ public class DoctorService implements IDoctorService {
     private final IDoctorRepository repository;
 
     @Autowired
-    public DoctorService(IDoctorRepository iDoctorRepository){
-        this.repository = iDoctorRepository;
+    public DoctorService(IDoctorRepository repository){
+        this.repository = repository;
     }
 
     @Override
     public Doctor save(Doctor doctor) {
-        return repository.save(doctor);
+        return this.repository.save(doctor);
     }
 
     @Override
     public Doctor read(String doctorId) {
-        return repository.findById(doctorId).orElse(null);
+        return this.repository.findById(doctorId).orElse(null);
     }
 
     @Override
     public boolean delete(String doctorId) {
         if(this.repository.existsById(doctorId)){
-            repository.deleteById(doctorId);
+            this.repository.deleteById(doctorId);
             return true;
         }
         return false;

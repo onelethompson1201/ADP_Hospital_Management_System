@@ -7,6 +7,7 @@
 package za.ac.cput.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -14,16 +15,25 @@ import java.util.Objects;
 public class Doctor implements Serializable {
 
     @Id
+    @Column(name = "doctor_id")
     private String doctorID;
-
+    @NotNull
     private String doctorName;
+    @NotNull
     private String doctorPassword;
 
-    @OneToMany
+    //@OneToMany
     //@JoinColumn(name = "department_id", referencedColumnName = "department_id")
+    @ManyToOne
+    @JoinColumn(name = "department_department_id")
     private Department department;
 
+    @NotNull
     private String specialty;
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
     protected Doctor() {
     }
