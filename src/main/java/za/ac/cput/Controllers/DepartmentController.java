@@ -17,50 +17,36 @@ import java.util.Set;
 @Slf4j
 public class DepartmentController {
 
-    private final DepartmentService departmentService;
+    private final DepartmentService service;
 
     @Autowired
-    public DepartmentController(DepartmentService departmentService){
-        this.departmentService = departmentService;
+    public DepartmentController(DepartmentService service){
+        this.service = service;
     }
 
-    @PostMapping("save/department")
-    public ResponseEntity<Department> save(@Valid @RequestBody Department saveDepartment)
+    @PostMapping("save")
+    public ResponseEntity<Department> save(@RequestBody @Valid Department department)
     {
-        log.info("Save request: {}", saveDepartment);
-
-        try{
-            Department department = this.departmentService.save(saveDepartment);
-            return  ResponseEntity.ok(department);
-        }
-        catch(IllegalArgumentException e){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
-        }
+        Department saved = this.service.save(department);
+        return  ResponseEntity.ok(saved);
     }
 
     @GetMapping("readDepartment/{departmentID}")
     public ResponseEntity<Department> read(@PathVariable String departmentID){
-        log.info("Read request: {}", departmentID);
-
-        try{
-            Department read = this.departmentService.read(departmentID);
-            return ResponseEntity.ok(read);
-        }
-        catch(IllegalArgumentException e){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-        }
+        Department read = this.service.read(departmentID);
+        return ResponseEntity.ok(read);
     }
 
     @DeleteMapping("deleteDepartment/{departmentID}")
     public ResponseEntity<Department> delete(@PathVariable String departmentID)   {
         log.info("Delete request: {}", departmentID);
-        this.departmentService.delete(departmentID);
+        this.service.delete(departmentID);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("getAll/department")
     public ResponseEntity<Set<Department>> getAll(){
-        Set<Department> departmentSet = this.departmentService.getAll();
+        Set<Department> departmentSet = this.service.getAll();
         return ResponseEntity.ok(departmentSet);
     }
 

@@ -16,50 +16,36 @@ import java.util.Set;
 @Slf4j
 public class DoctorController {
 
-    private final DoctorService doctorService;
+    private final DoctorService service;
 
     @Autowired
-    public DoctorController(DoctorService doctorService){
-        this.doctorService = doctorService;
+    public DoctorController(DoctorService service){
+        this.service = service;
     }
 
-    @PostMapping("save/doctor")
-    public ResponseEntity<Doctor> save(@Valid @RequestBody Doctor saveDoctor)
+    @PostMapping("save")
+    public ResponseEntity<Doctor> save(@RequestBody @Valid Doctor doctor)
     {
-        log.info("Save request: {}", saveDoctor);
-
-        try{
-            Doctor doctor = this.doctorService.save(saveDoctor);
-            return  ResponseEntity.ok(doctor);
-        }
-        catch(IllegalArgumentException e){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
-        }
+        Doctor saved = this.service.save(doctor);
+        return  ResponseEntity.ok(saved);
     }
 
     @GetMapping("readDoctor/{doctorID}")
-    public ResponseEntity<Doctor> read(@PathVariable String doctorID){
-        log.info("Read request: {}", doctorID);
-
-        try{
-            Doctor read = this.doctorService.read(doctorID);
-            return ResponseEntity.ok(read);
-        }
-        catch(IllegalArgumentException e){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-        }
+    public ResponseEntity<Doctor> read(@PathVariable String doctorId){
+        Doctor read = this.service.read(doctorId);
+        return ResponseEntity.ok(read);
     }
 
     @DeleteMapping("deleteDoctor/{doctorID}")
     public ResponseEntity<Doctor> delete(@PathVariable String doctorID)   {
         log.info("Delete request: {}", doctorID);
-        this.doctorService.delete(doctorID);
+        this.service.delete(doctorID);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("getAll/doctor")
     public ResponseEntity<Set<Doctor>> getAll(){
-        Set<Doctor> doctorSet = this.doctorService.getAll();
+        Set<Doctor> doctorSet = this.service.getAll();
         return ResponseEntity.ok(doctorSet);
     }
 }
