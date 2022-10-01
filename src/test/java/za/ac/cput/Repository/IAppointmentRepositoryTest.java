@@ -3,10 +3,7 @@ package za.ac.cput.Repository;
 import org.junit.jupiter.api.*;
 import za.ac.cput.Entity.Appointment;
 
-import za.ac.cput.Entity.Department;
-import za.ac.cput.Entity.Doctor;
-import za.ac.cput.Factory.DepartmentFactory;
-import za.ac.cput.Factory.DoctorFactory;
+
 import za.ac.cput.Factory.FactoryAppointment;
 
 import java.util.List;
@@ -30,9 +27,8 @@ class IAppointmentRepositoryTest {
 
     @BeforeEach
     void setUp(){
-        Department department = DepartmentFactory.createDepartment("NU", "Nursing Unit", 50);
-        Doctor doctor = DoctorFactory.createDoctor("Chante Davids", "RandomPassword123", department,"Midwife Nurse");
-        Appointment appointment = FactoryAppointment.createAppointment(doctor, "I think I have a headache","12 Wednesday 2022","August", "June");
+
+        Appointment appointment = FactoryAppointment.createAppointment("Dr Nxazonke", "I think I have a headache","12 Wednesday 2022","August", "June");
 
         assertNotNull(appointment);
         System.out.println(appointment);

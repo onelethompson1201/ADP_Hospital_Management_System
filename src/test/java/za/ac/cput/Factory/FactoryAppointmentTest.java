@@ -25,9 +25,8 @@ class FactoryAppointmentTest {
 
     @Test
     public void test() {
-        Department department = DepartmentFactory.createDepartment("NU", "Nursing Unit", 50);
-        Doctor doctor = DoctorFactory.createDoctor("Chante Davids", "RandomPassword123", department,"Midwife Nurse");
-        Appointment appointment = FactoryAppointment.createAppointment(doctor, "I think I have a headache","12 Wednesday 2022","August", "June");
+
+        Appointment appointment = FactoryAppointment.createAppointment("Dr Nxazonke", "I think I have a headache","12 Wednesday 2022","August", "June");
         System.out.println(appointment.toString());
         assertNotNull(appointment);
 

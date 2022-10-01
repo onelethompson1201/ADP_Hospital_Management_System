@@ -25,11 +25,8 @@ class ILaboratoryRepositoryTest {
     @BeforeEach
     void setUp(){
 
-        Department department = DepartmentFactory.createDepartment("NU", "Nursing Unit", 50);
-        Doctor doctor = DoctorFactory.createDoctor("Chante Davids", "RandomPassword123", department,"Midwife Nurse");
-        TestPatient testPatient = TestPatientFactory.createTestPatient("Urine Test");
-        Patient patient = PatientFactory.createPatient("Azolile Nxumalo","107 Mayday Crescent",765549876,"Male",27,"liveLong@08");
-        Laboratory laboratory = FactoryLaboratory.createLaboratory(patient, doctor, testPatient,"Unit 23", "Tuesday", 500);
+
+        Laboratory laboratory = FactoryLaboratory.createLaboratory("Anezwa", "Dr Nxazonke", "Positive","Unit 23", "Tuesday", 500);
 
         assertNotNull(laboratory);
         System.out.println(laboratory);
@@ -62,5 +59,4 @@ class ILaboratoryRepositoryTest {
         List<Laboratory> laboratoryList = this.repository.findAll();
         assertSame(0, laboratoryList.size());
     }
-
 }

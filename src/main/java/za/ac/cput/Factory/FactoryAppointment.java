@@ -12,7 +12,7 @@ import za.ac.cput.util.Helper;
 
 public class FactoryAppointment {
 
-    public static Appointment createAppointment(Doctor doctor, String appointmentType, String appointmentDescription, String appointmentDay, String appointmentMonth){
+    public static Appointment createAppointment(String doctor, String appointmentType, String appointmentDescription, String appointmentDay, String appointmentMonth){
 
         String appointmentID = Helper.generateAppointmentID();
 
@@ -31,5 +31,8 @@ public class FactoryAppointment {
         return appointment;
 
     }
+
+
+
 
 }

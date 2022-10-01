@@ -1,6 +1,7 @@
 package za.ac.cput.Service.Impl;
 
 import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import za.ac.cput.Entity.*;
 import za.ac.cput.Factory.*;
 import za.ac.cput.Repository.ILaboratoryRepository;
@@ -19,58 +20,65 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class LaboratoryServiceTest {
 
+    private final Laboratory laboratory1 = FactoryLaboratory.createLaboratory("Chuma Edward", "Dr Nxazonke", "Positive","Unit 23", "Tuesday", 500);
+    private final Laboratory laboratory2 = FactoryLaboratory.createLaboratory("Chuma Edward", "Dr Nxazonke", "Positive","Unit 23", "Wednesday", 700);
+    private final Laboratory laboratory3 = FactoryLaboratory.createLaboratory("Chuma Edward", "Dr Nxazonke", "Positive","Unit 23", "Thursday", 900);
+    private final Laboratory laboratory4 = FactoryLaboratory.createLaboratory("Chuma Edward", "Dr Nxazonke", "Positive","Unit 23", "Friday", 550);
+    private final Laboratory laboratory5 = FactoryLaboratory.createLaboratory("Chuma Edward", "Dr Nxazonke", "Positive","Unit 23", "Monday", 1100);
 
-    private ILaboratoryRepository repository;
-    private LaboratoryService laboratoryService;
+    @Autowired
+    private LaboratoryService service;
 
-
-    private Laboratory laboratory;
-    private Doctor doctor;
-    private Department department;
-    private Patient patient;
-    private TestPatient testPatient;
-
-
-    @BeforeEach
-    void setUp() {
-
-        this.laboratoryService = new LaboratoryService(repository);
-       this.department = DepartmentFactory.createDepartment("NU", "Nursing Unit", 50);
-        this.doctor = DoctorFactory.createDoctor("Chante Davids", "RandomPassword123", department,"Midwife Nurse");
-         this.testPatient = TestPatientFactory.createTestPatient("Urine Test", patient);
-        this.patient = PatientFactory.createPatient("Azolile Nxumalo","107 Mayday Crescent",765549876,"Male",27,"liveLong@08");
-        Laboratory laboratory = FactoryLaboratory.createLaboratory(patient, doctor, testPatient,"Unit 23", "Tuesday", 500);
-
-        assertNotNull(laboratory);
-    }
-
-    @Test
     @Order(1)
-    void save() {
-        Laboratory save = this.repository.save(this.laboratory);
-        assertEquals(this.laboratory, save);
+    @Test void s_save() {
+        System.out.println("Created:    ");
+        Laboratory createdLaboratory = service.saveLaboratory(laboratory1);
+        assertNotNull(createdLaboratory );
+        System.out.println(createdLaboratory );
+
+        Laboratory createdLaboratory2 = service.saveLaboratory(laboratory2);
+        assertNotNull(createdLaboratory2 );
+        System.out.println(createdLaboratory2 );
+
+        Laboratory createdLaboratory3 = service.saveLaboratory(laboratory3);
+        assertNotNull(createdLaboratory3 );
+        System.out.println(createdLaboratory3 );
+
+        Laboratory createdLaboratory4 = service.saveLaboratory(laboratory4);
+        assertNotNull(createdLaboratory4 );
+        System.out.println(createdLaboratory4 );
+
+        Laboratory createdLaboratory5 = service.saveLaboratory(laboratory5);
+        assertNotNull(createdLaboratory5 );
+        System.out.println(createdLaboratory5 );
+
+
+
     }
 
-    @Test
-    @Order(2)
-    void read() {
-        Laboratory read = this.repository.findById(this.laboratory.getLabID()).orElse(null);
-        assertEquals(this.laboratory, read);
-    }
-
-    @Test
-    @Order(4)
-    void delete() {
-        this.repository.deleteById(this.laboratory.getLabID());
-        List<Laboratory> laboratoryList = this.repository.findAll();
-        assertSame(0, laboratoryList.size());
-    }
-
-    @Test
     @Order(3)
-    void getAll() {
-        List<Laboratory> laboratoryList = this.repository.findAll();
-        assertSame(1, laboratoryList.size());
+    @Test void r_read() {
+        Laboratory read = service.readLaboratory(laboratory1.getLabID());
+        assertEquals(read.getLabID(), laboratory1.getLabID());
+        System.out.println("Read:   " + read);
+    }
+
+    @Order(4)
+    @Test void u_update(){
+
+    }
+
+    @Order(5)
+    @Test void d_delete() {
+        boolean success = service.deleteLaboratory(laboratory1.getLabID());
+        assertTrue(success);
+        System.out.println("Deleted:    " + success);
+    }
+
+    @Order(2)
+    @Test void getAll() {
+        System.out.println("Get All: ");
+        System.out.println(service.getAllLaboratory());
     }
 
 

@@ -27,13 +27,13 @@ import java.util.Objects;
 @Entity
 public class Appointment {
     //Declaring all the fields for the program as private fields
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @Column(name = "appointmentID")
     private String appointmentID;
 
-   @OneToOne
-   @JoinColumn(name = "doctor_Id", referencedColumnName = "doctor_Id")
-    private  Doctor doctor;
+
+    @NotNull
+    private  String doctor;
 
     @NotNull
     private String appointmentType;
@@ -43,6 +43,8 @@ public class Appointment {
     private  String appointmentDay;
     @NotNull
     private String appointmentMonth;
+
+
 
 //Creating a private parametrized constructor
 
@@ -62,7 +64,7 @@ public class Appointment {
         return appointmentID;
     }
 
-    public Doctor getDoctor() {
+    public String getDoctor() {
         return doctor;
     }
 
@@ -118,7 +120,7 @@ public class Appointment {
         //Declaring all the fields for the program as private fields
 
         private String appointmentID;
-        private Doctor doctor;
+        private String doctor;
         private String appointmentType;
         private   String appointmentDescription;
         private  String appointmentDay;
@@ -130,7 +132,7 @@ public class Appointment {
             return this;
         }
 
-        public Builder setDoctor(Doctor doctor){
+        public Builder setDoctor(String doctor){
             this.doctor = doctor;
             return this;
         }
@@ -174,6 +176,7 @@ public class Appointment {
         }
 
     }
+
 
 
 }
