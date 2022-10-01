@@ -6,8 +6,10 @@
 
 package za.ac.cput.Entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -15,10 +17,11 @@ import java.util.Objects;
 public class Department implements Serializable {
 
     @Id
-    //@ColumnName(name = "department_id")
+    @Column(name = "department_id")
     private String departmentID;
-
+    @NotNull
     private String departmentName;
+    @NotNull
     private int departmentSize;
 
     protected Department() {
