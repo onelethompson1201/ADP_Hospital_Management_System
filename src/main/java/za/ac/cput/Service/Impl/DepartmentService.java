@@ -20,24 +20,24 @@ public class DepartmentService implements IDepartmentService {
     private final IDepartmentRepository repository;
 
     @Autowired
-    public DepartmentService(IDepartmentRepository iDepartmentRepository){
-        this.repository = iDepartmentRepository;
+    public DepartmentService(IDepartmentRepository repository){
+        this.repository = repository;
     }
 
     @Override
     public Department save(Department department) {
-        return repository.save(department);
+        return this.repository.save(department);
     }
 
     @Override
     public Department read(String departmentId) {
-        return repository.findById(departmentId).orElse(null);
+        return this.repository.findById(departmentId).orElse(null);
     }
 
     @Override
     public boolean delete(String departmentId) {
         if(this.repository.existsById(departmentId)){
-            repository.deleteById(departmentId);
+            this.repository.deleteById(departmentId);
             return true;
         }
         return false;

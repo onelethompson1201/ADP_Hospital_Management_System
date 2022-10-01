@@ -6,9 +6,12 @@ package za.ac.cput.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import za.ac.cput.Entity.Bill;
+
+import java.util.List;
 import java.util.Set;
 @Repository
 public interface IBillRepository extends JpaRepository<Bill,String>
 {
-    public Set<Bill> getAll();
+    @Override
+    List<Bill> findAllById(Iterable<String> strings);
 }

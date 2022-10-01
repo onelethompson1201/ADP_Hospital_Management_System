@@ -5,6 +5,7 @@ package za.ac.cput.Service.Impl;
 */
 
 import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,30 +13,29 @@ import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.Entity.Bill;
 import za.ac.cput.Factory.BillFactory;
 import za.ac.cput.Service.Impl.BillServiceImpl;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-@TestMethodOrder(MethodOrderer.MethodName.class)
 @SpringBootTest
+@TestMethodOrder(MethodOrderer.MethodName.class)
 class BillServiceImplTest {
-    @Autowired
-    private BillServiceImpl service;
-
-    private static Bill bill1 = BillFactory.createBill("19990330", "patient#24", "Jasmine"
+    private final Bill bill1 = BillFactory.createBill("19990330", "patient#24", "Jasmine"
             , 4500);
-    private static Bill bill2 = BillFactory.createBill("19990331", "patient#25", "Davin"
+    private final Bill bill2 = BillFactory.createBill("19990331", "patient#25", "Davin"
             , 4500);
-    private static Bill bill3 = BillFactory.createBill("19990332", "patient#26", "Mike"
+    private final Bill bill3 = BillFactory.createBill("19990332", "patient#26", "Mike"
             , 6800);
-    private static Bill bill4 = BillFactory.createBill("19990333", "patient#27", "Anthony"
+    private final Bill bill4 = BillFactory.createBill("19990333", "patient#27", "Anthony"
             , 8764);
-    private static Bill bill5 = BillFactory.createBill("19990334", "patient#28", "Davids"
+    private final Bill bill5 = BillFactory.createBill("19990334", "patient#28", "Davids"
             , 9000);
-    private static Bill bill6 = BillFactory.createBill("19990335", "patient#29", "Lizanne"
+    private final Bill bill6 = BillFactory.createBill("19990335", "patient#29", "Lizanne"
             , 67888);
 
-    @Test
-    void s_save() {
+    @Autowired private BillServiceImpl service;
+
+
+    @Order(1)
+    @Test void s_save() {
         System.out.println("Created:  ");
         Bill created1 = service.save(bill1);
         assertNotNull(created1);
@@ -62,22 +62,23 @@ class BillServiceImplTest {
         System.out.println(created6);
     }
 
-    @Test
-    void r_read() {
+
+    @Order(3)
+    @Test void r_read() {
         Bill read = service.read(bill2.getBillNo());
         assertEquals(read.getBillNo(), bill2.getBillNo());
         System.out.println("Read:  " + read);
     }
 
-    @Test
-    void d_delete() {
+    @Order(4)
+    @Test void d_delete() {
         boolean success = service.delete(bill1.getBillNo());
         assertTrue(success);
         System.out.println( "Deleted:  " + success);
     }
 
-    @Test
-    void getAll() {
+    @Order(2)
+    @Test void getAll() {
         System.out.println("Get All: ");
         System.out.println(service.getAll());
     }

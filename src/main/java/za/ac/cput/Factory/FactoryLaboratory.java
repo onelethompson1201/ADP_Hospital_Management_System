@@ -21,7 +21,7 @@ import za.ac.cput.util.Helper;
 
 public class FactoryLaboratory {
 
-    public static Laboratory createLaboratory(Patient patient, Doctor doctor, TestPatient testPatient, String labName, String labDay, double amount){
+    public static Laboratory createLaboratory(String patient, String doctor, String testPatient, String labName, String labDay, double amount){
 
         String labID = Helper.generateLaboratoryID();
 
@@ -41,5 +41,6 @@ public class FactoryLaboratory {
         return  laboratory;
 
     }
+
 
 }

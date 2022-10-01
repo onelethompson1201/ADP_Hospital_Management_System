@@ -1,17 +1,16 @@
 package za.ac.cput.Controllers;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import za.ac.cput.Entity.Appointment;
-import za.ac.cput.Entity.Department;
-import za.ac.cput.Entity.Doctor;
-import za.ac.cput.Factory.DepartmentFactory;
-import za.ac.cput.Factory.DoctorFactory;
 import za.ac.cput.Factory.FactoryAppointment;
 
 import java.util.Arrays;
@@ -19,36 +18,28 @@ import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * @author Chuma Nxazonke
- * Student number: 219181187
- * Date: 15 September 2022
- */
+@TestMethodOrder(MethodOrderer.MethodName.class)
+@SpringBootTest
 
 class AppointmentControlllerTest {
 
+
     @LocalServerPort
     private int portNumber;
-
     @Autowired
-    private AppointmentControlller appointmentControlller;
+    private AppointmentController appointmentController;
 
-    @Autowired
     private TestRestTemplate restTemplate;
-
     private Appointment appointment;
-    private Department department;
-
     private String urlBase;
-    private Doctor doctor;
+
 
     @BeforeEach
     void setUp() {
-        assertNotNull(appointmentControlller);
-        this.department = DepartmentFactory.createDepartment("NU", "Nursing Unit", 50);
-        this.doctor = DoctorFactory.createDoctor("Chante Davids", "RandomPassword123", department, "Midwife Nurse");
-        this.appointment = FactoryAppointment.createAppointment(doctor, "I think I have a headache", "12 Wednesday 2022", "August", "June");
+        this.appointment = FactoryAppointment.createAppointment("Dr Nxazonke", "Sickness", "I have a flue", "Monday","October");
         this.urlBase = "http://localhost:" + this.portNumber + "/hospital-management/appointment/";
+
+        assertNotNull(appointmentController);
     }
 
     @Test
@@ -69,7 +60,7 @@ class AppointmentControlllerTest {
         String url = urlBase + "readAppointment/" + appointment.getAppointmentID();
         System.out.println(url);
 
-        ResponseEntity<Appointment> appointmentResponseEntity = this.restTemplate.postForEntity(url, this.appointment, Appointment.class);
+        ResponseEntity<Appointment> appointmentResponseEntity = this.restTemplate.getForEntity(url, Appointment.class);
         System.out.println(appointmentResponseEntity);
 
         assertAll(()-> assertEquals(HttpStatus.OK,appointmentResponseEntity.getStatusCode()),
@@ -87,7 +78,7 @@ class AppointmentControlllerTest {
     }
 
     @Test
-    void e_getAll() {
+    void e_getAllAppointment() {
         String url = urlBase + "getAppointment";
         System.out.println(url);
 
@@ -98,7 +89,6 @@ class AppointmentControlllerTest {
                 ()-> assertTrue(responseEntity.getBody().length == 0),
                 ()-> assertNotNull(responseEntity));
     }
-
 
 
 

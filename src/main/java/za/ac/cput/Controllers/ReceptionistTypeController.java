@@ -14,10 +14,9 @@ import za.ac.cput.Service.Impl.ReceptionistServiceImpl;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("hospital-management/receptionist-type/")
+@RequestMapping("/hospital-management/receptionist-type/")
 @Slf4j
 public class ReceptionistTypeController {
-
     private ReceptionistServiceImpl receptionistService;
 
     @Autowired
@@ -25,14 +24,14 @@ public class ReceptionistTypeController {
         this.receptionistService = receptionistService;
     }
 
-    @PostMapping("save/receptionist-type")
+    @PostMapping("save")
     public ResponseEntity<Receptionist> save(@Valid @RequestBody Receptionist receptionist){
         log.info("Save Request: {}", receptionist);
         Receptionist save = this.receptionistService.save(receptionist);
         return ResponseEntity.ok(save);
     }
 
-    @GetMapping("read/receptionist-type")
+    @GetMapping("read")
     public ResponseEntity<Receptionist> read(@PathVariable String id){
         log.info("Read request: {}", id);
         try{
@@ -43,7 +42,7 @@ public class ReceptionistTypeController {
         }
     }
 
-    @DeleteMapping("delete/receptionist-type")
+    @DeleteMapping("delete")
     public ResponseEntity<Receptionist> delete(@PathVariable String id){
         log.info("Delete Request: {}", id);
         this.receptionistService.delete(id);

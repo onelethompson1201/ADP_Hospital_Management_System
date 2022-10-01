@@ -13,6 +13,6 @@ import java.util.Set;
  */
 
 public interface IAppointmentService extends IService<Appointment, String> {
-   public Set<Appointment> getAll();
+   public List<Appointment> getAllAppointment();
 
 }

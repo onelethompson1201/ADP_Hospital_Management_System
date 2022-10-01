@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.Set;
 
 @RestController
-@RequestMapping("hospital-management/bill-type/")
+@RequestMapping("/hospital-management/bill-type/")
 @Slf4j
 public class BillTypeController {
 
@@ -26,14 +26,14 @@ public class BillTypeController {
         this.billService = billService;
     }
 
-    @PostMapping("save/bill-type")
+    @PostMapping("save")
     public ResponseEntity<Bill> save(@Valid @RequestBody Bill bill){
         log.info("Save Request: {}", bill);
         Bill save = this.billService.save(bill);
         return ResponseEntity.ok(save);
     }
 
-    @GetMapping("read/bill-type")
+    @GetMapping("read")
     public ResponseEntity<Bill> read(@PathVariable String id){
         log.info("Read request: {}", id);
         try{
@@ -44,14 +44,14 @@ public class BillTypeController {
         }
     }
 
-    @DeleteMapping("delete/bill-type")
+    @DeleteMapping("delete")
     public ResponseEntity<Bill> delete(@PathVariable String id){
         log.info("Delete Request: {}", id);
         this.billService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("getAll/bill-type")
+    @GetMapping("getAll")
     public ResponseEntity<Set<Bill>> getAll(){
         Set<Bill> billSet = this.billService.getAll();
         return ResponseEntity.ok(billSet);
