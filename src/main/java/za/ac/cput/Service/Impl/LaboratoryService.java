@@ -2,10 +2,10 @@ package za.ac.cput.Service.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import za.ac.cput.Entity.Doctor;
+
+import za.ac.cput.Entity.Appointment;
 import za.ac.cput.Entity.Laboratory;
 import za.ac.cput.Repository.ILaboratoryRepository;
-import za.ac.cput.Service.Interfaces.ILaboratoryService;
 
 import java.util.List;
 import java.util.Set;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * Date: 15 August 2022
  */
 @Service
-public class LaboratoryService implements ILaboratoryService {
+public class LaboratoryService  {
 
     private final ILaboratoryRepository repository;
 
@@ -26,34 +26,46 @@ public class LaboratoryService implements ILaboratoryService {
         this.repository = iLaboratoryRepository;
     }
 
-    @Override
-    public Laboratory save(Laboratory laboratory) {
-        return repository.save(laboratory);
+
+    public Laboratory saveLaboratory (Laboratory laboratory){
+        return this.repository.save(laboratory);
     }
 
-    @Override
-    public Laboratory read(String labId) {
-        return this.repository.getById(labId);
+    public List<Laboratory> saveLaboratory (List<Laboratory> laboratoryList){
+        return  this.repository.saveAll(laboratoryList);
     }
 
-    @Override
-    public boolean delete(String labId) {
-        if(this.repository.existsById(labId)){
-            this.repository.deleteById(labId);
+    public Laboratory readLaboratory (String labID){
+        return this.repository.getById(labID);
+    }
+
+
+    public boolean deleteLaboratory (String labID){
+
+        if(this.repository.existsById(labID)){
+            this.repository.deleteById(labID);
+
             return true;
         }
         return false;
     }
+    public Laboratory updateLaboratory (Laboratory laboratory) {
+        Laboratory existLaboratory = repository.findById(laboratory.getLabID()).orElse(null);
+        existLaboratory.setDoctor(laboratory.getDoctor());
+        existLaboratory.setPatient(laboratory.getPatient());
+        existLaboratory.setTestPatient(laboratory.getTestPatient());
+        existLaboratory.setLabName(laboratory.getLabName());
+        existLaboratory.setLabDay(laboratory.getLabDay());
+        existLaboratory.setAmount(laboratory.getAmount());
 
-    @Override
-    public Set<Laboratory> getAll() {
-        return this.repository.findAll().stream().collect(Collectors.toSet());
+
+        return this.repository.save(existLaboratory);
+
     }
 
-
-
-
-
+    public List<Laboratory> getAllLaboratory() {
+        return this.repository.findAll();
+    }
 
 
 

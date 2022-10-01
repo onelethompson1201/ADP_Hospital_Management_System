@@ -22,7 +22,7 @@ import java.util.Objects;
 
 @Setter
 @Getter
-@NoArgsConstructor
+
 @AllArgsConstructor
 @Table
 @Entity
@@ -31,20 +31,18 @@ public class Laboratory {
 //Declaring all the  private fields we are going to use on our program
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "labID")
+
     private String labID;
 
-    @OneToOne
-    @JoinColumn(name = "patient_Id", referencedColumnName = "patient_Id")
-    private Patient patient;
+    @NotNull
+    private String patient;
 
-    @OneToOne
-    @JoinColumn(name = "doctor_Id", referencedColumnName = "doctor_Id")
-    private Doctor doctor;
+    @NotNull
+    private String doctor;
 
-    @OneToOne
-    @JoinColumn(name = "testPatient_Id", referencedColumnName = "testPatient_Id")
-    private TestPatient testPatient;
+    @NotNull
+    private String testPatient;
     @NotNull
     private String labName;
     @NotNull
@@ -52,6 +50,9 @@ public class Laboratory {
     @NotNull
     private double amount;
 
+    protected Laboratory(){
+
+    }
 
 //Creating a private parameterized constructor
 
@@ -72,15 +73,15 @@ public class Laboratory {
         return labID;
     }
 
-    public Patient getPatient() {
+    public String getPatient() {
         return patient;
     }
 
-    public Doctor getDoctor() {
+    public String getDoctor() {
         return doctor;
     }
 
-    public TestPatient getTestPatient() {
+    public String getTestPatient() {
         return testPatient;
     }
 
@@ -116,7 +117,7 @@ public class Laboratory {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-       Laboratory laboratory = (Laboratory) o;
+        Laboratory laboratory = (Laboratory) o;
         return labID.equals(laboratory.labID) && patient.equals(laboratory.patient)
                 && doctor.equals(laboratory.doctor) && testPatient.equals(laboratory.testPatient)
                 && labName.equals(laboratory.labName) && labDay.equals(laboratory.labDay);
@@ -133,9 +134,9 @@ public class Laboratory {
     public static class Builder{
 
         private String labID;
-        private Patient patient;
-        private Doctor doctor;
-        private TestPatient testPatient;
+        private String patient;
+        private String doctor;
+        private String testPatient;
         private String labName;
         private String labDay;
         private double amount;
@@ -145,17 +146,17 @@ public class Laboratory {
             this.labID = labID1;
             return this;
         }
-        public Builder setPatient (Patient patient){
+        public Builder setPatient (String patient){
             this.patient = patient;
             return this;
         }
 
-        public Builder setDoctor (Doctor doctor){
+        public Builder setDoctor (String doctor){
             this.doctor = doctor;
             return this;
         }
 
-        public Builder setTestPatient (TestPatient testPatient){
+        public Builder setTestPatient (String testPatient){
             this.testPatient = testPatient;
             return this;
         }
@@ -178,7 +179,7 @@ public class Laboratory {
         public Builder Copy (Laboratory laboratory){
 
             this.labID = laboratory.labID;
-           this.patient = laboratory.patient;
+            this.patient = laboratory.patient;
             this.doctor = laboratory.doctor;
             this.testPatient = laboratory.testPatient;
             this.labName = laboratory.labName;
@@ -194,9 +195,5 @@ public class Laboratory {
         }
 
     }
-
-
-
-
 
 }

@@ -1,11 +1,13 @@
 package za.ac.cput.Service.Impl;
 
+import antlr.LexerSharedInputState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.Entity.Appointment;
 import za.ac.cput.Repository.IAppointmentRepository;
-import za.ac.cput.Service.Interfaces.IAppointmentService;
 
+
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,7 +17,7 @@ import java.util.stream.Collectors;
  * Date: 16 August 2022
  */
 @Service
-public class AppointmentService  implements IAppointmentService {
+public class AppointmentService{
 
     private final IAppointmentRepository repository;
 
@@ -24,18 +26,21 @@ public class AppointmentService  implements IAppointmentService {
         this.repository = iAppointmentRepository;
     }
 
-    @Override
-    public Appointment save (Appointment appointment){
+
+    public Appointment saveAppointment (Appointment appointment){
         return this.repository.save(appointment);
     }
 
-    @Override
-    public Appointment read (String appointmentID){
+    public List<Appointment> saveAppointment (List<Appointment> appointmentList){
+        return  this.repository.saveAll(appointmentList);
+    }
+
+    public Appointment readAppointment (String appointmentID){
         return this.repository.getById(appointmentID);
     }
 
-    @Override
-    public boolean delete (String appointmentID){
+
+    public boolean deleteAppointment (String appointmentID){
 
         if(this.repository.existsById(appointmentID)){
             this.repository.deleteById(appointmentID);
@@ -45,8 +50,21 @@ public class AppointmentService  implements IAppointmentService {
         return false;
     }
 
-    @Override
-    public Set<Appointment> getAll() {
-        return this.repository.findAll().stream().collect(Collectors.toSet());
+    public Appointment updateAppointment (Appointment appointment){
+        Appointment existAppointment = repository.findById(appointment.getAppointmentID()).orElse(null);
+        existAppointment.setAppointmentID(appointment.getAppointmentID());
+        existAppointment.setDoctor(appointment.getDoctor());
+        existAppointment.setAppointmentType(appointment.getAppointmentType());
+        existAppointment.setAppointmentDescription(appointment.getAppointmentDescription());
+        existAppointment.setAppointmentDay(appointment.getAppointmentDay());
+        existAppointment.setAppointmentMonth(appointment.getAppointmentMonth());
+
+        return this.repository.save(existAppointment);
+
+    }
+
+
+    public List<Appointment> getAppointment() {
+        return repository.findAll();
     }
 }

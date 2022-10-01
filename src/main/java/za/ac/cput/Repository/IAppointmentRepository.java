@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import za.ac.cput.Entity.Appointment;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,5 +16,5 @@ import java.util.Set;
 @Repository
 public interface IAppointmentRepository extends JpaRepository<Appointment, String> {
 
-    public Set<Appointment> getAll();
+    public List<Appointment> getAllAppointment();
 }

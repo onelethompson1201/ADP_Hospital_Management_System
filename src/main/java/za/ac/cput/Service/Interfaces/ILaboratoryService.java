@@ -14,7 +14,7 @@ import java.util.Set;
 
 public interface ILaboratoryService extends IService<Laboratory, String> {
 
-    public Set<Laboratory> getAll();
+    public List<Laboratory> getAllLaboratory();
 
 
 }
