@@ -3,6 +3,7 @@ package za.ac.cput.Entity;
 
 import lombok.Getter;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -17,28 +18,35 @@ import java.util.Objects;
 
 @Getter
 @Entity
-@Table
 public class Patient implements Serializable {
 
+
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name= "patient_id")
     private String patientID;
-
+    @NotNull
     private String patientName;
-
+    @NotNull
     private String address;
-
+    @NotNull
     private long phone_number;
-
+    @NotNull
     private String sex;
-
+    @NotNull
     private int age;
+    @NotNull
     private String patientPassword;
 
-    protected Patient(){}
+    @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private TestPatient testPatient;
+    protected Patient(){
+    }
 
-    private Patient (Builder builder){
+
+
+
+    private Patient(Builder builder){
         this.patientID = builder.patientID;
         this.patientName = builder.patientName;
         this.address = builder.address;
@@ -61,6 +69,9 @@ public class Patient implements Serializable {
                 ", patientPassword='" + patientPassword + '\'' +
                 '}';
     }
+
+
+
 
     public static class Builder{
         private String patientID;

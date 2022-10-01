@@ -18,17 +18,17 @@ Student number: 219319464
 Date: 14 August 2022
  */
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class PatientServiceTest {
     @Autowired
     private PatientService service;
 
-    private static Patient patient1 = PatientFactory.createPatient("Zolile Zuma", "110 Long Island Road", +786520098, "Male", 34, "PassWord009@");
-    private static Patient patient2 = PatientFactory.createPatient("Wendy William", "245 Clifton Road", +819086543, "Male", 38, "Pass@Word087");
-    private static Patient patient3 = PatientFactory.createPatient("Jason Rent", "01 Gorven Street", +865208098, "Male", 21, "pa$sWoRd@221");
-    private static Patient patient4 = PatientFactory.createPatient("Christine Zondi", "45 Wellington Street", +620086798, "Female", 56, "PA$sworD!028");
-    private static Patient patient5 = PatientFactory.createPatient("Nondumiso Maxoki", "27 Nomyayi Street", +715204098, "Female", 37, "useRnAMe!98765");
+    private final Patient patient1 = PatientFactory.createPatient( "Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
+    private final Patient patient2 = PatientFactory.createPatient( "Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
+    private static Patient patient3 = PatientFactory.createPatient( "Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
+    private static Patient patient4 = PatientFactory.createPatient( "Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
+    private static Patient patient5 = PatientFactory.createPatient( "Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
 
 
     @Test
@@ -62,9 +62,8 @@ class PatientServiceTest {
 
     @Test
     void b_read() {
-
-        Patient read = service.read(patient2.getPatientID());
-        assertEquals(read.getPatientID(), patient2.getPatientID());
+        Patient read = service.read(patient4.getPatientID());
+        assertNotNull(read.getPatientID(), patient4.getPatientID());
         System.out.println("Read: " + read);
     }
 
@@ -76,15 +75,15 @@ class PatientServiceTest {
 
     @Test
     void d_delete() {
-       boolean success = service.delete(patient1.getPatientID());
-       assertTrue(success);
-        System.out.println("Deleted: " + success);
+        service.delete(patient3.getPatientID());
+        assertNotNull(patient3);
+        System.out.println("Deleted: " + patient3);
     }
 
     @Test
     void c_getPatients(){
         System.out.println("Get all patients: ");
-        System.out.println(service.getPatients());
+        System.out.println(service.findAll());
 
     }
 }

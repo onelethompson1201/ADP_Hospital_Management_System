@@ -11,7 +11,7 @@ class PatientFactoryTest {
     void createPatient() {
         Patient pat = PatientFactory.createPatient("Nolubabalo Ndongeni","60 Hug Street", 67367872,"Female",23, "Hey" );
         assertNotNull(pat);
-        System.out.println(pat.toString());
+        System.out.println(pat);
 
     }
 }
