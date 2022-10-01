@@ -8,9 +8,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
-public class Bill
+public class Bill implements Serializable
 {
     @Id
     @Column(name = "patient_id")
@@ -21,8 +22,8 @@ public class Bill
     private String patientName;
     @NotNull
     private float billAmount;
-    protected Bill() {
-    }
+
+    protected Bill() {}
 
     public Bill(Builder builder)
     {

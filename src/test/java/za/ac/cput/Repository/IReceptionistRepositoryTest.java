@@ -4,56 +4,48 @@ package za.ac.cput.Repository;
    Author: Davin Shaun Carstens
    Date: 08 April 2022
 */
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.springframework.core.annotation.Order;
+import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.Entity.Receptionist;
 import za.ac.cput.Factory.ReceptionistFactory;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
-
+@SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class IReceptionistRepositoryTest {
 
+    private final Receptionist receptionist = ReceptionistFactory.createReceptionist("Davin",
+            "Shaun", "1234", 716172619);
+    @Autowired
     private IReceptionistRepository repository;
-    private Receptionist receptionist;
 
-    @BeforeEach
-    void setUp(){
-        Receptionist receptionist1 = ReceptionistFactory.createReceptionist("Rochelle",
-                "Davin ", "admin", +716172619);
-        assertNotNull(receptionist1);
-        System.out.println(receptionist1);
-    }
-
-    @Test
-    @Order(3)
-    void getAll() {
-        List<Receptionist> receptionistList = this.repository.findAll();
-        assertSame(1, receptionistList.size());
-    }
-
-    @Test
     @Order(1)
-    void save(){
+    @Test void save()
+    {
         Receptionist save = this.repository.save(this.receptionist);
         assertEquals(this.receptionist, save);
     }
 
-    @Test
     @Order(2)
-    void read(){
+    @Test void read()
+    {
         Receptionist read = this.repository.getReferenceById(this.receptionist.getReceptionistID());
     }
 
-    @Test
     @Order(4)
-    void delete(){
+    @Test void delete()
+    {
         this.repository.deleteById(this.receptionist.getReceptionistID());
         List<Receptionist> receptionistList = this.repository.findAll();
         assertSame(0, receptionistList.size());
     }
+
+//    @Order(3)
+//    @Test void getAll()
+//    {
+//        List<Receptionist> receptionistList = this.repository.findAll();
+//        assertSame(1, receptionistList.size());
+//    }
 
 }

@@ -4,6 +4,7 @@ package za.ac.cput.Service.Impl;
    Author: Davin Shaun Carstens
 */
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.Entity.Bill;
 import za.ac.cput.Repository.IBillRepository;
@@ -14,8 +15,11 @@ import java.util.stream.Collectors;
 @Service
 public class BillServiceImpl implements BillService {
 
-    private IBillRepository repository;
-
+    private final IBillRepository repository;
+    @Autowired
+    public BillServiceImpl(IBillRepository repository) {
+        this.repository = repository;
+    }
     @Override
     public Bill save(Bill bill) {
         return this.repository.save(bill);

@@ -13,7 +13,7 @@ import za.ac.cput.Service.Interfaces.ReceptionistService;
 @Service
 public class ReceptionistServiceImpl implements ReceptionistService {
 
-    private IReceptionistRepository repository;
+    private final IReceptionistRepository repository;
 
     @Autowired
     ReceptionistServiceImpl(IReceptionistRepository repository){

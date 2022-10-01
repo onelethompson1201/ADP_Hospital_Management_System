@@ -5,49 +5,50 @@ package za.ac.cput.Repository;
    Date: 08 April 2022
 */
 import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.Entity.Bill;
 import za.ac.cput.Factory.BillFactory;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class IBillRepositoryTest {
 
+    private final Bill bill= BillFactory.createBill("2001", "12345", "NOLU", 10);
+    private final Bill bill1= BillFactory.createBill("2003", "123456", "BALO", 20);
+    private final Bill bill2= BillFactory.createBill("2002", "34567", "Carstens", 30);
+
+    @Autowired
     private IBillRepository repository;
-    private Bill bill;
 
-    @BeforeEach
-    void setUp() {
-        Bill bill = BillFactory.createBill("990330", "165432",
-                "Lionel", 430000);
-        assertNotNull(bill);
-        System.out.println(bill);
-    }
-    @Test
     @Order(1)
-    void save(){
-        Bill save = this.repository.save(this.bill);
-        assertEquals(this.bill, save);
+    @Test void save()
+    {
+        //Bill save = this.repository.save(this.bill);
+        Bill save1 = repository.save(bill1);
+        assertNotNull(save1);
     }
 
-    @Test
     @Order(2)
-    void read(){
+    @Test void read()
+    {
         Bill read = this.repository.getReferenceById(this.bill.getBillNo());
     }
 
-    @Test
     @Order(4)
-    void delete(){
-        this.repository.deleteById(this.bill.getBillNo());
-        List<Bill> billList = this.repository.findAll();
-        assertSame(0, billList.size());
-    }
-
-    @Test
-    @Order(3)
-    void getAll() {
+    @Test void delete()
+    {
+        this.repository.delete(this.bill);
         List<Bill> billList = this.repository.findAll();
         assertSame(1, billList.size());
+    }
+
+    @Order(3)
+    @Test void getAll()
+    {
+        List<Bill> billList = this.repository.findAll();
+        assertSame(0, billList.size());
     }
 }
