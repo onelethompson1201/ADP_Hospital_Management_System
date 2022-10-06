@@ -53,9 +53,13 @@ public class TestPatientService implements ITestPatientService {
 
     //findAll
     public List<TestPatient> getTestPatients(){
-        return repository.findAll();
+        return repository.getAll();
     }
 
+    @Override
+    public List<TestPatient> getAll() {
+        return repository.findAll();
+    }
 
 
 }

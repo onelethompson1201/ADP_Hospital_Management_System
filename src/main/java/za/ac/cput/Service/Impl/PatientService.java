@@ -59,10 +59,16 @@ public class PatientService implements IPatientService {
         return false;
     }
 
+    @Override
+    public List<Patient> getPatients() {
+        return repository.getAll();
+    }
+
     //findAll
-    public List<Patient> getPatients(){
+    public List<Patient> getAll(){
         return repository.findAll();
     }
+
 
 
 

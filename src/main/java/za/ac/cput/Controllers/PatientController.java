@@ -69,8 +69,8 @@ public class PatientController {
     }
 
     @GetMapping("all")
-    public ResponseEntity<List<Patient>> findAll(){
-        List<Patient> patient =  this.patientService.findAll();
+    public ResponseEntity<List<Patient>> getAll(){
+        List<Patient> patient =  this.patientService.getAll();
         return ResponseEntity.ok(patient);
     }
 

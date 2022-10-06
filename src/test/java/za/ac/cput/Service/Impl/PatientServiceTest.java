@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.Entity.Patient;
 import za.ac.cput.Factory.PatientFactory;
+import za.ac.cput.Repository.IPatientRepository;
 import za.ac.cput.Service.Impl.PatientService;
 
 
@@ -24,19 +25,24 @@ class PatientServiceTest {
     @Autowired
     private PatientService service;
 
-    private final Patient patient1 = PatientFactory.createPatient( "Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
-    private final Patient patient2 = PatientFactory.createPatient( "Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
-    private static Patient patient3 = PatientFactory.createPatient( "Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
-    private static Patient patient4 = PatientFactory.createPatient( "Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
-    private static Patient patient5 = PatientFactory.createPatient( "Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
+    private IPatientRepository repository;
 
 
+
+    private final Patient patient1 = PatientFactory.createPatient( "PHM897","Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
+    private final Patient patient2 = PatientFactory.createPatient( "PHM222","Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
+    private static Patient patient3 = PatientFactory.createPatient("PHM103" ,"Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
+    private static Patient patient4 = PatientFactory.createPatient("PHM409" ,"Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
+    private static Patient patient5 = PatientFactory.createPatient( "PHM809","Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
+
+
+    @Order(1)
     @Test
-    void a_save() {
+    void save() {
         System.out.println("Created: ");
-        Patient created1 = service.save(patient1);
-        assertNotNull(created1);
-        System.out.println(created1);
+        Patient created= service.save(patient1);
+        assertNotNull(created);
+        System.out.println(created);
 
         System.out.println("Created: ");
         Patient created2 = service.save(patient2);
@@ -55,11 +61,11 @@ class PatientServiceTest {
 
         System.out.println("Created: ");
         Patient created5 = service.save(patient5);
-        assertNotNull(created1);
+        assertNotNull(created5);
         System.out.println(created5);
     }
 
-
+    @Order(2)
     @Test
     void b_read() {
         Patient read = service.read(patient4.getPatientID());
@@ -72,18 +78,18 @@ class PatientServiceTest {
         Patient read = this.repository.findByName(this.patient.getPatientName());
         assertEquals(this.patient, read);
     }*/
-
+    @Order(4)
     @Test
     void d_delete() {
         service.delete(patient3.getPatientID());
         assertNotNull(patient3);
         System.out.println("Deleted: " + patient3);
     }
-
+    @Order(3)
     @Test
     void c_getPatients(){
         System.out.println("Get all patients: ");
-        System.out.println(service.findAll());
+        System.out.println(service.getPatients());
 
     }
 }
