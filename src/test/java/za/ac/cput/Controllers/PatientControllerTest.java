@@ -80,7 +80,7 @@ class PatientControllerTest {
 
     @Test
     void e_getAll() {
-        String url = urlBase + "getPatients";
+        String url = urlBase + "all";
 
         System.out.println(url);
 

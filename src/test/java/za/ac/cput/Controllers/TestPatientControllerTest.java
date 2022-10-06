@@ -47,7 +47,7 @@ public class TestPatientControllerTest {
 
     @Test
     void save() {
-        String url = urlBase + "saveTestPatient";
+        String url = urlBase + "save_testPatient";
         System.out.println(url);
         ResponseEntity<TestPatient> testPatientResponseEntity = this.restTemplate.postForEntity(url, this.testPatient, TestPatient.class);
         System.out.println(testPatientResponseEntity);

@@ -28,7 +28,7 @@ public class PatientController {
         this.patientService = patientService;
     }
 
-    @PostMapping("save/patient")
+    @PostMapping("save")
     public ResponseEntity<Patient> save(@Valid @RequestBody Patient savePatient) {
         log.info("Save request: {}", savePatient);
         try {
