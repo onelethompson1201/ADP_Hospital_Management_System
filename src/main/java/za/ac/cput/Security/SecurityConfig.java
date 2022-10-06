@@ -10,10 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-
-
-
-
+import org.springframework.security.web.SecurityFilterChain;
 
 
 /*Name: Nolubabalo Ndongeni
@@ -21,9 +18,6 @@ Student number: 219319464
 SecurityConfig.java
 27 September 2022
 */
-
-
-
 
 
 @EnableWebSecurity
@@ -35,12 +29,12 @@ public class SecurityConfig  {
 
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(User.withUsername("user")
-                .password(passwordEncoder().encode("12345"))
+                .password(passwordEncoder().encode("1234567890"))
                 .roles("USER")
                 .build());
 
         manager.createUser(User.withUsername("admin")
-                .password(passwordEncoder().encode("54321"))
+                .password(passwordEncoder().encode("0987654321"))
                 .roles("USER","ADMIN")
                 .build());
 
