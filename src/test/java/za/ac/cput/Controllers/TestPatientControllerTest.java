@@ -29,10 +29,11 @@ Date: 22 August 2022
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class TestPatientControllerTest {
 
-    @LocalServerPort
-    private int portNumber;
-    @Autowired private TestPatientController testPatientController;
-    @Autowired private TestRestTemplate restTemplate;
+    @LocalServerPort private int port;
+    @Autowired
+    private TestPatientController testPatientController;
+    @Autowired
+    private TestRestTemplate restTemplate;
     private Patient patient;
     private TestPatient testPatient;
     private String urlBase;
@@ -44,8 +45,8 @@ public class TestPatientControllerTest {
     @BeforeEach
     void setUp() {
         assertNotNull(testPatientController);
-        this.testPatient = TestPatientFactory.createTestPatient("Blood DNA", patient);
-        this.urlBase = "http://localhost:" + this.portNumber + "/test-patient-db/testPatient/";
+        this.testPatient = TestPatientFactory.createTestPatient("THM786","Blood DNA", patient);
+        this.urlBase = "http://localhost:" + this.port + "/test-patient/testPatient/";
     }
 
     @Test

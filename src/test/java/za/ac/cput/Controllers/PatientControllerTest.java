@@ -30,7 +30,7 @@ class PatientControllerTest {
     @LocalServerPort private int port;
     @Autowired private PatientController patientController;
     @Autowired private TestRestTemplate restTemplate;
-    private String urlBase;
+    private final String urlBase = "http://localhost:8080/test_patient/patient/";
 
     public static String SECURITY_USERNAME = "user";
     public static String SECURITY_PASSWORD = "password";
@@ -38,30 +38,32 @@ class PatientControllerTest {
 
     @BeforeEach
     void setUp() {
-
-        this.patient = PatientFactory.createPatient( "Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
-        this.urlBase = "http://localhost:" + this.port + "/test_patient_db/patient/";
         assertNotNull(patientController);
+        this.patient = PatientFactory.createPatient( "PHM872","Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
+        String url = urlBase ;
     }
 
     @Test
     void a_create() {
-        String url = urlBase + "savePatient";
-        System.out.println(url);
-        ResponseEntity<Patient> patientResponseEntity = this.restTemplate.postForEntity(url, this.patient, Patient.class);
-        System.out.println(patientResponseEntity);
-        assertAll(()-> assertEquals(HttpStatus.OK, patientResponseEntity.getStatusCode()),
-                ()-> assertNotNull(patientResponseEntity.getBody()));
-        System.out.println("Patient saved!");
-
-        //Security
+        String url = urlBase + "save";
+        //System.out.println(url);
         HttpHeaders headers= new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
         ResponseEntity<String> response = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
                 .exchange(url, HttpMethod.POST, entity, String.class);
-        System.out.println("Create : " + url);
+        //ResponseEntity<Patient> patientResponseEntity = this.restTemplate.postForEntity(url, this.patient, Patient.class);
         System.out.println(response);
-        System.out.println(response.getBody());
+        assertAll(()-> assertEquals(HttpStatus.OK, response.getStatusCode()),
+                ()-> assertNotNull(response.getBody()));
+        //System.out.println("Patient saved!");
+
+        //Security
+
+
+
+        //System.out.println("Create : " + url);
+
+        //System.out.println(response.getBody());
     }
 
     @Test
@@ -92,13 +94,14 @@ class PatientControllerTest {
         System.out.println("Delete successful!");
 
         //Security
+        /*
         HttpHeaders headers= new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
         ResponseEntity<String> response = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
                 .exchange(url, HttpMethod.DELETE, entity, String.class);
         System.out.println("Delete: ");
         System.out.println(response);
-        System.out.println(response.getBody());
+        System.out.println(response.getBody());*/
     }
 
     @Test

@@ -36,9 +36,8 @@ class PatientServiceTest {
     private static Patient patient5 = PatientFactory.createPatient( "PHM809","Babsie Ndongeni", "67 Nomyayi Street", +785648934,"Female",22,"password");
 
 
-    @Order(1)
     @Test
-    void save() {
+    void a_save() {
         System.out.println("Created: ");
         Patient created= service.save(patient1);
         assertNotNull(created);
@@ -65,7 +64,7 @@ class PatientServiceTest {
         System.out.println(created5);
     }
 
-    @Order(2)
+
     @Test
     void b_read() {
         Patient read = service.read(patient4.getPatientID());
@@ -78,18 +77,18 @@ class PatientServiceTest {
         Patient read = this.repository.findByName(this.patient.getPatientName());
         assertEquals(this.patient, read);
     }*/
-    @Order(4)
+
     @Test
     void d_delete() {
         service.delete(patient3.getPatientID());
         assertNotNull(patient3);
         System.out.println("Deleted: " + patient3);
     }
-    @Order(3)
+
     @Test
     void c_getPatients(){
         System.out.println("Get all patients: ");
-        System.out.println(service.getPatients());
+        System.out.println(service.getAll());
 
     }
 }
