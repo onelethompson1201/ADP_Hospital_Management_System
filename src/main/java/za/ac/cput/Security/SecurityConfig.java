@@ -1,5 +1,5 @@
 package za.ac.cput.Security;
-
+//This is a security configure
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -13,13 +13,6 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 
-/*Name: Nolubabalo Ndongeni
-Student number: 219319464
-SecurityConfig.java
-27 September 2022
-*/
-
-
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true,jsr250Enabled = true)
 public class SecurityConfig  {
@@ -29,12 +22,12 @@ public class SecurityConfig  {
 
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(User.withUsername("user")
-                .password(passwordEncoder().encode("1234567890"))
+                .password(passwordEncoder().encode("12345"))
                 .roles("USER")
                 .build());
 
         manager.createUser(User.withUsername("admin")
-                .password(passwordEncoder().encode("0987654321"))
+                .password(passwordEncoder().encode("54321"))
                 .roles("USER","ADMIN")
                 .build());
 
@@ -73,6 +66,20 @@ public class SecurityConfig  {
                 .antMatchers(HttpMethod.DELETE,"/doctor/deleteDoctor/").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/doctor/getAll").hasRole("USER")
 
+                //Appointment authentication
+                .antMatchers(HttpMethod.POST,"/appointment/save").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/appointment/deleteAppointment/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/appointment/readAppointment").hasRole("USER")
+                .antMatchers(HttpMethod.GET,"/appointment/getAll/").hasRole("USER")
+
+
+                //Laboratory authentication
+                .antMatchers(HttpMethod.POST,"/laboratory/save_laboratory").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/laboratory/readLaboratory/").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE,"/laboratory/deleteLaboratory/").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/laboratory/getAllLaboratory").hasRole("USER")
+
+
                 .and()
                 .csrf().disable()
                 .formLogin().disable();
@@ -85,4 +92,3 @@ public class SecurityConfig  {
         return new BCryptPasswordEncoder();
     }
 }
-
