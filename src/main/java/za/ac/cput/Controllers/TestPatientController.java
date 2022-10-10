@@ -63,7 +63,7 @@ public class TestPatientController {
 
     @GetMapping("getTestPatients")
     public ResponseEntity<List<TestPatient>> getAll(){
-        List<TestPatient> testPatientsList =  this.testPatientService.getTestPatients();
+        List<TestPatient> testPatientsList =  this.testPatientService.getAll();
         return ResponseEntity.ok(testPatientsList);
     }
 }

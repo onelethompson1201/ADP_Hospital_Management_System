@@ -16,5 +16,5 @@ import java.util.Set;
 @Repository
 public interface IAppointmentRepository extends JpaRepository<Appointment, String> {
 
-    public List<Appointment> getAllAppointment();
+
 }

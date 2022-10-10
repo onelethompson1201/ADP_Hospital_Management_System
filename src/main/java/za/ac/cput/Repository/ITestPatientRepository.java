@@ -16,6 +16,6 @@ import java.util.Set;
 
 @Repository
 public interface ITestPatientRepository extends JpaRepository<TestPatient, String> {
-    List<TestPatient> getAll();
+
 
 }
