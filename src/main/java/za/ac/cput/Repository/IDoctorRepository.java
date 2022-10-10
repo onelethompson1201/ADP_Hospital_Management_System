@@ -13,5 +13,5 @@ import java.util.Set;
 
 public interface IDoctorRepository extends JpaRepository<Doctor, String>
 {
-    public Set<Doctor> getAll();
+    Set<Doctor> getAll();
 }

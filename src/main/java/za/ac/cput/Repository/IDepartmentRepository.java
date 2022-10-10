@@ -13,5 +13,5 @@ import java.util.Set;
 
 public interface IDepartmentRepository extends JpaRepository<Department, String>
 {
-    public Set<Department> getAll();
+    Set<Department> getAll();
 }
