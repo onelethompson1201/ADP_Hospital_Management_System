@@ -16,7 +16,4 @@ import java.util.Set;
 
 @Repository
 public interface IPatientRepository extends JpaRepository<Patient, String> {
-    Patient findByName(String patientName);
-
-    List<Patient> getAll();
 }

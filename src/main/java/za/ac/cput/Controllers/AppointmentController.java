@@ -8,8 +8,13 @@ package za.ac.cput.Controllers;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.server.ResponseStatusException;
+import za.ac.cput.Entity.Administration;
 import za.ac.cput.Entity.Appointment;
 import za.ac.cput.Repository.IAppointmentRepository;
 import za.ac.cput.Service.Impl.AppointmentService;
@@ -33,35 +38,47 @@ public class AppointmentController {
 
     private AppointmentService appointmentService;
 
-
-    @PostMapping("/addAppointment")
-    public Appointment addAppointment (@RequestBody Appointment appointment){
-        return appointmentService.saveAppointment(appointment);
+    @Autowired
+    AppointmentController(AppointmentService appointmentService)
+    {
+        this.appointmentService = appointmentService;
     }
 
-    @PostMapping("/addAppointment")
-
-    public List<Appointment> addAppointment (@RequestBody List<Appointment> appointment){
-        return appointmentService.saveAppointment(appointment);
+    @PostMapping("save/appointment")
+    public ResponseEntity<Appointment> save(@Valid @RequestBody Appointment appointment)
+    {
+        log.info("Save Request: {}", appointment);
+        Appointment save = this.appointmentService.saveAppointment(appointment);
+        return ResponseEntity.ok(save);
     }
 
-    @GetMapping ("/appointment")
-    public List<Appointment> findAllAppointment(){
-        return appointmentService.getAppointment();
+    @GetMapping("getAdmin/{id}")
+    public ResponseEntity<Appointment> read(@PathVariable String id)
+    {
+        log.info("Read Request: {}", id);
+        try
+        {
+            Appointment read = this.appointmentService.readAppointment(id);
+            return ResponseEntity.ok(read);
+        }
+        catch (IllegalArgumentException e)
+        {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 
-
-    @PutMapping("/update")
-    public Appointment addUpdate (@RequestBody Appointment appointment){
-        return appointmentService.updateAppointment(appointment);
+    @DeleteMapping("deleteAdmin/{id}")
+    public ResponseEntity<Appointment> delete(@PathVariable String id)
+    {
+        log.info("Delete Request: {}", id);
+        this.appointmentService.deleteAppointment(id);
+        return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/delete{appointmentID}")
-    public boolean deleteAppointment(@PathVariable String appointmentID){
-        return  appointmentService.deleteAppointment(appointmentID);
-    }
-
-
-
-
+//    @GetMapping("getAll/admin")
+//    public ResponseEntity<Set<Appointment>> getAll()
+//    {
+//        Set<Appointment> administrationSet = this.appointmentService.;
+//        return ResponseEntity.ok(administrationSet);
+//    }
 }

@@ -10,15 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import za.ac.cput.Entity.Appointment;
 import za.ac.cput.Entity.Laboratory;
-
 import za.ac.cput.Service.Impl.LaboratoryService;
 
-
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Set;
 
 /**
  * @author Chuma Nxazonke
@@ -33,33 +28,46 @@ public class LaboratoryController {
 
     private LaboratoryService laboratoryService;
 
-
-    @PostMapping("/addLaboratory")
-    public Laboratory addLaboratory (@RequestBody Laboratory laboratory){
-        return laboratoryService.saveLaboratory(laboratory);
+    @Autowired
+    LaboratoryController(LaboratoryService laboratoryService)
+    {
+        this.laboratoryService = laboratoryService;
+    }
+    @PostMapping("save/laboratory")
+    public ResponseEntity<Laboratory> save(@Valid @RequestBody Laboratory laboratory)
+    {
+        log.info("Save Request: {}", laboratory);
+        Laboratory save = this.laboratoryService.saveLaboratory(laboratory);
+        return ResponseEntity.ok(save);
     }
 
-    @PostMapping("/addLaboratory")
-
-    public List<Laboratory> addLaboratory (@RequestBody List<Laboratory> laboratoryList){
-        return laboratoryService.getAllLaboratory();
+    @GetMapping("getAdmin/{id}")
+    public ResponseEntity<Laboratory> read(@PathVariable String id)
+    {
+        log.info("Read Request: {}", id);
+        try
+        {
+            Laboratory read = this.laboratoryService.readLaboratory(id);
+            return ResponseEntity.ok(read);
+        }
+        catch (IllegalArgumentException e)
+        {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 
-    @GetMapping ("/laboratory")
-    public List<Laboratory> findAllLaboratory(){
-        return laboratoryService.getAllLaboratory();
+    @DeleteMapping("deleteAdmin/{id}")
+    public ResponseEntity<Laboratory> delete(@PathVariable String id)
+    {
+        log.info("Delete Request: {}", id);
+        this.laboratoryService.deleteLaboratory(id);
+        return ResponseEntity.noContent().build();
     }
 
-
-    @PutMapping("/update")
-    public Laboratory addUpdate (@RequestBody Laboratory laboratory){
-        return laboratoryService.updateLaboratory(laboratory);
-    }
-
-    @DeleteMapping("/delete{labID}")
-    public boolean deleteAppointment(@PathVariable String labID){
-        return  laboratoryService.deleteLaboratory(labID);
-    }
-
-
+//    @GetMapping("getAll/admin")
+//    public ResponseEntity<Set<Administration>> getAll()
+//    {
+//        Set<Administration> administrationSet = this.administrationService.getAll();
+//        return ResponseEntity.ok(administrationSet);
+//    }
 }
