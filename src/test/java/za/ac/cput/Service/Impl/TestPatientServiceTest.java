@@ -1,6 +1,6 @@
 package za.ac.cput.Service.Impl;
 
-import org.junit.jupiter.api.*;
+/**import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.Entity.Patient;
@@ -58,4 +58,3 @@ class TestPatientServiceTest {
         System.out.println("Get all testPatients: ");
         System.out.println(service.getTestPatients());
     }
-}
