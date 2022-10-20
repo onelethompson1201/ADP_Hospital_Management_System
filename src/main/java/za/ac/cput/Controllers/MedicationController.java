@@ -61,11 +61,9 @@ public class MedicationController {
 
     @GetMapping("all")
     public ResponseEntity<Set<Medication>> getAll() {
-        Set<Patient> medicationSet = this.medicationServiceImpl.getAll();
+        Set<Medication> medicationSet = this.medicationServiceImpl.getAll();
         return ResponseEntity.ok(medicationSet);
     }
-
-
 }
  /*   @GetMapping("getAll/medication")
     public ResponseEntity<Set<Medication>> getAll()
@@ -75,7 +73,7 @@ public class MedicationController {
     }
 
   */
-}
+
 
 
 
