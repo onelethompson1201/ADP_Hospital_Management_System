@@ -60,8 +60,8 @@ public class TestResultsController {
     }
 
     @GetMapping("getTestResults")
-    public ResponseEntity<List<TestResults>> getAll(){
-        List<TestResults> testResultsList =  this.testResultsServiceImpl.getAll();
+    public ResponseEntity<Set<TestResults>> getAll(){
+        Set<TestResults> testResultsList =  this.testResultsServiceImpl.getAll();
         return ResponseEntity.ok(testResultsList);
     }
 }
